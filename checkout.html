@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-PK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout — Chef Knife Chef Knife Sets</title>
+  <meta name="description" content="Pay for your Chef Knife chef knife set online via EasyPaisa or JazzCash and we ship free across Pakistan." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" data-brand></a>
+      <nav class="nav">
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#story">Story</a>
+        <a href="cart.html" class="cart-link">Cart <span class="cart-count" data-cart-count>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="checkout-section">
+      <div class="container">
+        <h1 class="section-title">Checkout</h1>
+        <p class="section-sub">Pay online, enter your address, we ship to your door.</p>
+
+        <!-- Static form copy for Netlify build-time form detection.
+             Visible form below shares the same name="order". -->
+        <form name="order" netlify netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="tel" name="phone" />
+          <input type="email" name="email" />
+          <input type="text" name="address" />
+          <input type="text" name="city" />
+          <input type="text" name="postal_code" />
+          <input type="text" name="order_items" />
+          <input type="text" name="order_subtotal" />
+          <input type="text" name="order_total" />
+          <input type="text" name="payment_method" />
+          <input type="text" name="payment_reference" />
+          <input type="file" name="payment_screenshot" />
+        </form>
+
+        <div class="checkout-layout">
+          <form
+            class="checkout-form"
+            name="order"
+            method="POST"
+            action="/thank-you.html"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            enctype="multipart/form-data"
+            data-checkout-form
+          >
+            <input type="hidden" name="form-name" value="order" />
+            <p class="hp" hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+            <!-- Hidden inputs populated by JS so the email you receive contains the full order -->
+            <input type="hidden" name="order_items" data-order-items />
+            <input type="hidden" name="order_subtotal" data-order-subtotal-hidden />
+            <input type="hidden" name="order_total" data-order-total-hidden />
+
+            <!-- ===== Step 1: Delivery details ===== -->
+            <fieldset class="checkout-step">
+              <legend>1. Delivery details</legend>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Full name</span>
+                  <input type="text" name="name" required autocomplete="name" />
+                </label>
+                <label class="field">
+                  <span>Phone (WhatsApp)</span>
+                  <input type="tel" name="phone" required autocomplete="tel" placeholder="+92 ..." />
+                </label>
+                <label class="field span-2">
+                  <span>Email <em>(optional)</em></span>
+                  <input type="email" name="email" autocomplete="email" />
+                </label>
+                <label class="field span-2">
+                  <span>Delivery address</span>
+                  <input type="text" name="address" required autocomplete="street-address" placeholder="House #, street, area" />
+                </label>
+                <label class="field">
+                  <span>City</span>
+                  <input type="text" name="city" required autocomplete="address-level2" />
+                </label>
+                <label class="field">
+                  <span>Postal code</span>
+                  <input type="text" name="postal_code" autocomplete="postal-code" />
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- ===== Step 2: Pay online ===== -->
+            <fieldset class="checkout-step">
+              <legend>2. Pay online (full amount in advance)</legend>
+              <p class="step-help">
+                Scan one of the QR codes below with EasyPaisa or JazzCash, or send the payment to the number shown.
+              </p>
+
+              <div class="payment-methods">
+                <label class="payment-method">
+                  <input type="radio" name="payment_method" value="EasyPaisa" required />
+                  <div class="payment-card">
+                    <div class="payment-card-head">
+                      <span class="payment-name">EasyPaisa</span>
+                      <span class="payment-number" data-easypaisa></span>
+                    </div>
+                    <img class="qr" data-easypaisa-qr alt="EasyPaisa QR code" onerror="this.classList.add('placeholder')" />
+                    <span class="account-name muted">Account: <span data-account-name></span></span>
+                  </div>
+                </label>
+
+                <label class="payment-method">
+                  <input type="radio" name="payment_method" value="JazzCash" required />
+                  <div class="payment-card">
+                    <div class="payment-card-head">
+                      <span class="payment-name">JazzCash</span>
+                      <span class="payment-number" data-jazzcash></span>
+                    </div>
+                    <img class="qr" data-jazzcash-qr alt="JazzCash QR code" onerror="this.classList.add('placeholder')" />
+                    <span class="account-name muted">Account: <span data-account-name></span></span>
+                  </div>
+                </label>
+              </div>
+
+              <label class="field">
+                <span>Transaction reference (TID) <em>(optional)</em></span>
+                <input type="text" name="payment_reference" placeholder="From your EasyPaisa / JazzCash receipt" />
+              </label>
+            </fieldset>
+
+            <!-- ===== Step 3: Upload screenshot ===== -->
+            <fieldset class="checkout-step">
+              <legend>3. Upload payment screenshot</legend>
+              <p class="step-help">Required so we can confirm your order and ship within 24 hours.</p>
+              <label class="field upload-field">
+                <input type="file" name="payment_screenshot" accept="image/*,.pdf" required data-screenshot />
+                <span class="upload-hint" data-upload-hint>Choose file — image or PDF</span>
+              </label>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary btn-block" data-submit-order>Place order</button>
+            <p class="fine-print">By placing this order you confirm the payment has been sent.</p>
+          </form>
+
+          <aside class="order-recap">
+            <h2 class="summary-title">Your order</h2>
+            <div class="recap-items" data-recap-items></div>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span data-cart-subtotal>PKR 0</span>
+            </div>
+            <div class="summary-row muted">
+              <span>Shipping</span>
+              <span data-shipping-note></span>
+            </div>
+            <div class="summary-total">
+              <span>Total to pay</span>
+              <span data-cart-total>PKR 0</span>
+            </div>
+            <a href="cart.html" class="link-btn back-to-cart">← Back to cart</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href="#" class="wa-fab" data-whatsapp-link aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 14.99L2 22l5.16-1.35A10 10 0 1 0 19.05 4.91zM12 20a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.8.82-2.98-.19-.31A8 8 0 1 1 12 20zm4.55-5.99c-.25-.12-1.47-.72-1.7-.81s-.39-.12-.56.12-.64.81-.79.97-.29.18-.54.06a6.55 6.55 0 0 1-1.93-1.19 7.24 7.24 0 0 1-1.34-1.66c-.14-.24 0-.37.11-.49s.25-.29.37-.43a1.68 1.68 0 0 0 .25-.41.45.45 0 0 0 0-.43c-.06-.12-.56-1.34-.76-1.84s-.4-.42-.55-.42h-.47a.91.91 0 0 0-.66.31 2.76 2.76 0 0 0-.87 2.06 4.81 4.81 0 0 0 1 2.54 11 11 0 0 0 4.2 3.71 14 14 0 0 0 1.4.52 3.37 3.37 0 0 0 1.55.1 2.54 2.54 0 0 0 1.66-1.17 2 2 0 0 0 .14-1.17c-.06-.1-.22-.16-.47-.28z"/></svg>
+  </a>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <p class="footer-brand" data-brand></p>
+        <p class="muted" data-company-legal></p>
+        <p class="muted" data-company-address></p>
+      </div>
+      <div class="footer-col footer-col-right">
+        <a href="#" class="footer-whatsapp" data-whatsapp-link>WhatsApp <span data-whatsapp-display></span></a>
+        <p class="muted">&copy; <span data-year></span> <span data-brand></span>. Pakistan only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-PK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order received — Chef Knife Chef Knife Sets</title>
+  <meta name="description" content="Thank you — your Chef Knife chef knife set order has been received." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" data-brand></a>
+      <nav class="nav">
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#story">Story</a>
+        <a href="cart.html" class="cart-link">Cart <span class="cart-count" data-cart-count>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="thanks-section">
+      <div class="container thanks-inner">
+        <h1 class="section-title">Thank you.</h1>
+        <p class="thanks-lead">
+          We have received your order and your payment confirmation. Our team will verify the payment
+          and ship your set within 24 hours.
+        </p>
+        <p class="thanks-help">
+          You will receive an update on your WhatsApp number. Need anything?
+          <a href="#" data-whatsapp-link>Message us on WhatsApp</a>.
+        </p>
+        <a href="index.html" class="btn">Back to the shop</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <p class="footer-brand" data-brand></p>
+        <p class="muted" data-company-legal></p>
+        <p class="muted" data-company-address></p>
+      </div>
+      <div class="footer-col footer-col-right">
+        <a href="#" class="footer-whatsapp" data-whatsapp-link>WhatsApp <span data-whatsapp-display></span></a>
+        <p class="muted">&copy; <span data-year></span> <span data-brand></span>. Pakistan only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Clear the cart after a successful order
+    try { localStorage.removeItem("pk_cart_v1"); } catch (e) {}
+  </script>
+</body>
+</html>
