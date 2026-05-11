@@ -1,75 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Last full build: 2026-05-11. Update lastmod on each significant content change. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shop-chef-knife.netlify.app/</loc>
+    <loc>https://shop-chef-knife.netlify.app/index.html</loc>
     <lastmod>2026-05-11</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-PK" href="https://shop-chef-knife.netlify.app/" />
-    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://shop-chef-knife.netlify.app/ur/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://shop-chef-knife.netlify.app/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/teak-1.jpg</image:loc>
-      <image:title>Teak chef knife set — Chef Knife, Sialkot</image:title>
-      <image:caption>Premium teak chef knife set hand-forged in Sialkot, Pakistan.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/sapphire-1.jpg</image:loc>
-      <image:title>Sapphire chef knife set — Chef Knife, Sialkot</image:title>
-      <image:caption>Premium sapphire-blue resin chef knife set hand-forged in Sialkot, Pakistan.</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://shop-chef-knife.netlify.app/chef-knife-set-sapphire.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en-PK" href="https://shop-chef-knife.netlify.app/chef-knife-set-sapphire.html" />
-    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://shop-chef-knife.netlify.app/ur/chef-knife-set-sapphire.html" />
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/sapphire-1.jpg</image:loc>
-      <image:title>Sapphire chef knife set with blue resin handle</image:title>
-      <image:caption>Premium Sapphire chef knife set by Chef Knife — full-tang 8-inch chef knife and 3.5-inch paring knife with hand-poured sapphire-blue acrylic resin handles, hand-forged in Sialkot, Pakistan.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/sapphire-2.jpg</image:loc>
-      <image:title>Sapphire chef knife set — knives next to closed gift box</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/sapphire-3.jpg</image:loc>
-      <image:title>Sapphire chef knife set — knives on top of closed gift box</image:title>
-    </image:image>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://shop-chef-knife.netlify.app/chef-knife-set-teak.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en-PK" href="https://shop-chef-knife.netlify.app/chef-knife-set-teak.html" />
-    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://shop-chef-knife.netlify.app/ur/chef-knife-set-teak.html" />
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/teak-1.jpg</image:loc>
-      <image:title>Teak chef knife set with teak wood handle</image:title>
-      <image:caption>Premium Teak chef knife set by Chef Knife — full-tang 8-inch chef knife and 3.5-inch paring knife with natural teak wood handles, hand-forged in Sialkot, Pakistan.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/teak-2.jpg</image:loc>
-      <image:title>Teak chef knife set — knives on closed gift box</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/teak-3.jpg</image:loc>
-      <image:title>Teak chef knife set — close-up of natural teak wood handles</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://shop-chef-knife.netlify.app/images/teak-4.jpg</image:loc>
-      <image:title>Teak chef knife set — knives presented inside open gift box</image:title>
-    </image:image>
+    <priority>0.95</priority>
   </url>
-
-  <!-- City delivery landing pages -->
+  <url>
+    <loc>https://shop-chef-knife.netlify.app/ur/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://shop-chef-knife.netlify.app/ur/chef-knife-set-sapphire.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shop-chef-knife.netlify.app/ur/chef-knife-set-teak.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shop-chef-knife.netlify.app/wedding-gift-chef-knife.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shop-chef-knife.netlify.app/eid-gift-chef-knife.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://shop-chef-knife.netlify.app/chef-knife-karachi.html</loc>
     <lastmod>2026-05-11</lastmod>
@@ -135,39 +113,5 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <!-- Seasonal gift guides -->
-  <url>
-    <loc>https://shop-chef-knife.netlify.app/wedding-gift-chef-knife.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shop-chef-knife.netlify.app/eid-gift-chef-knife.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Urdu (RTL) pages -->
-  <url>
-    <loc>https://shop-chef-knife.netlify.app/ur/</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://shop-chef-knife.netlify.app/ur/chef-knife-set-sapphire.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shop-chef-knife.netlify.app/ur/chef-knife-set-teak.html</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
 </urlset>
