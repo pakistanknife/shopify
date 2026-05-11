@@ -1,0 +1,89 @@
+/* RTL adjustments for the Urdu version of the site.
+   Linked AFTER style.css on /ur/ pages only. Keeps Latin script (brand,
+   product code, prices) flowing LTR inside the Urdu RTL flow via dir="ltr"
+   inline. */
+
+:root {
+  --font-ur: "Noto Nastaliq Urdu", "Cormorant Garamond", serif;
+}
+
+/* Urdu body type — Nastaliq for headings + body, Inter for small Latin bits */
+html[lang="ur-PK"] body {
+  font-family: "Noto Nastaliq Urdu", "Inter", system-ui, sans-serif;
+  line-height: 1.9;
+}
+html[lang="ur-PK"] h1,
+html[lang="ur-PK"] h2,
+html[lang="ur-PK"] h3,
+html[lang="ur-PK"] h4,
+html[lang="ur-PK"] .hero-title,
+html[lang="ur-PK"] .section-title,
+html[lang="ur-PK"] .product-title {
+  font-family: "Noto Nastaliq Urdu", "Cormorant Garamond", serif;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+html[lang="ur-PK"] .eyebrow,
+html[lang="ur-PK"] .payment-pay-label,
+html[lang="ur-PK"] .brand-tag {
+  font-family: "Noto Nastaliq Urdu", "Inter", sans-serif;
+  letter-spacing: 0;
+}
+
+/* Brand wordmark stays Latin LTR even on RTL page */
+html[lang="ur-PK"] .brand-line {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.08em;
+}
+
+/* Numbers, prices, USSD codes — keep tabular Latin */
+html[lang="ur-PK"] .product-price,
+html[lang="ur-PK"] .product-card-price,
+html[lang="ur-PK"] .hero-price-hint strong,
+html[lang="ur-PK"] [dir="ltr"] {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* Hero text alignment: RTL flow */
+html[lang="ur-PK"] .hero-text { max-width: 100%; }
+html[lang="ur-PK"] .hero-cta-row { flex-direction: row-reverse; }
+
+/* Reversed border-left on factory-note becomes border-right in RTL */
+html[lang="ur-PK"] .factory-note {
+  border-left: 0;
+  border-right: 2px solid var(--accent);
+}
+
+/* WhatsApp FAB: stay on right in LTR, mirror to left in RTL for visual symmetry */
+html[lang="ur-PK"] .wa-fab {
+  right: auto;
+  left: 22px;
+}
+@media (max-width: 560px) {
+  html[lang="ur-PK"] .wa-fab { left: 16px; right: auto; }
+}
+
+/* Language switcher in nav */
+.lang-switch {
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0.08em;
+  font-size: 11px !important;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft) !important;
+}
+.lang-switch:hover { color: var(--ink) !important; border-color: var(--accent); }
+
+/* FAQ summary marker — RTL puts the +/− on the left, that's fine */
+html[lang="ur-PK"] .faq-item summary::after { margin-left: 0; margin-right: auto; }
+
+/* Trust strip icons read OK in RTL since they're just decorative */
+
+/* Footer columns flip naturally with dir=rtl */
+html[lang="ur-PK"] .footer-col-right { text-align: left; }
+
+/* Breadcrumbs separator stays */
+html[lang="ur-PK"] .breadcrumbs span[aria-hidden] { margin: 0 8px; }

@@ -13,7 +13,14 @@
 [[redirects]]
   from = "/product.html"
   query = { id = "olive" }
-  to = "/chef-knife-set-olive.html"
+  to = "/chef-knife-set-teak.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product.html"
+  query = { id = "teak" }
+  to = "/chef-knife-set-teak.html"
   status = 301
   force = true
 
@@ -22,6 +29,13 @@
   to = "/#shop"
   status = 301
 
+# Legacy URL (early naming used "olive") → permanent move to teak
+[[redirects]]
+  from = "/chef-knife-set-olive.html"
+  to = "/chef-knife-set-teak.html"
+  status = 301
+  force = true
+
 # Pretty short URLs (optional shortcuts)
 [[redirects]]
   from = "/sapphire"
@@ -29,8 +43,13 @@
   status = 301
 
 [[redirects]]
+  from = "/teak"
+  to = "/chef-knife-set-teak.html"
+  status = 301
+
+[[redirects]]
   from = "/olive"
-  to = "/chef-knife-set-olive.html"
+  to = "/chef-knife-set-teak.html"
   status = 301
 
 # ---------- Headers ----------
@@ -73,6 +92,12 @@
 
 [[headers]]
   for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/llms.txt"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
     Cache-Control = "public, max-age=3600"

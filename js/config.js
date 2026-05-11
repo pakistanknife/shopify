@@ -4,38 +4,68 @@
 
 const CONFIG = {
   brand: "Chef Knife",
-  tagline: "Premium chef knife sets, handcrafted in Sialkot, Pakistan.",
+  tagline: "Heirloom-grade chef knife sets, handcrafted in Sialkot, Pakistan.",
 
   // !! Update once you have a final domain (e.g. https://chefknife.pk).
   // Used for canonical URLs, sitemap, and Open Graph tags.
   siteUrl: "https://chefknife.pk",
 
-  // Company / legal info
+  // Company / legal info — we are the physical manufacturer, not a reseller.
+  // Note: precise street address intentionally omitted from the public site.
   company: {
     legalName: "Pakistan Knife Factory (PKF)",
-    addressLine1: "148 Fatimah Jinnah Road",
+    addressLine1: "Small Industrial Area",
     city: "Sialkot",
     postalCode: "51310",
     country: "Pakistan",
     countryCode: "PK"
   },
 
-  // WhatsApp in international format, digits only.
+  // WhatsApp in international format, digits only. The number itself is never
+  // displayed publicly — only used to build the wa.me deep link.
   whatsapp: "923107919165",
-  whatsappDisplay: "+92 310 791 9165",
 
   currency: "PKR",
   shippingNote: "Free delivery across Pakistan. 3–5 business days.",
 
   payment: {
-    easypaisaNumber: "0310 7919165",
-    jazzcashNumber: "0310 7919165",
-    accountName: "Pakistan Knife Factory",
-    easypaisaQR: "images/qr-easypaisa.png",
-    jazzcashQR: "images/qr-jazzcash.png"
+    // JazzCash merchant account (paid via QR scan or *786*10# + TILL ID)
+    jazzcash: {
+      shopName: "AIMAN JAVEED Shop",
+      tillId: "983298157",
+      ussd: "*786*10#",
+      qr: "images/qr-jazzcash.png"
+    },
+    // EasyPaisa "digital bank" merchant — paid via QR scan or Send Money to this number
+    easypaisa: {
+      accountName: "AIMAN JAVED",
+      number: "0340 427 9944",
+      qr: "images/qr-easypaisa.png"
+    }
   },
 
-  notifyEmail: "orders@pakistanknifefactory.com"
+  notifyEmail: "orders@pakistanknifefactory.com",
+
+  // -----------------------------------------------------------------
+  // Trustpilot integration (REVIEWS)
+  // -----------------------------------------------------------------
+  // Activation steps:
+  //   1. Create a Business account: https://business.trustpilot.com/signup
+  //   2. Verify the chefknife.pk domain (Trustpilot will email a TXT record
+  //      to add to your DNS — same dashboard where you add Netlify DNS).
+  //   3. Once approved, find your Business Unit ID in the dashboard URL:
+  //      https://business.trustpilot.com/reviews/<businessUnitId>
+  //   4. Paste that ID below. Every Trustpilot widget across the site will
+  //      activate automatically on next page load.
+  //
+  // While `businessUnitId` is empty, no widgets render and no Trustpilot
+  // script loads — your page stays clean and fast.
+  // -----------------------------------------------------------------
+  trustpilot: {
+    businessUnitId: "",         // e.g. "5e5d7f4a8b4f7a0001a3c1e2"
+    locale: "en-US",            // change to "ur-PK" on /ur/ pages if Trustpilot adds Urdu later
+    reviewUrl: "https://www.trustpilot.com/review/chefknife.pk"
+  }
 };
 
 const PRODUCTS = [
@@ -44,39 +74,44 @@ const PRODUCTS = [
     slug: "chef-knife-set-sapphire",
     name: "Sapphire Chef Knife Set",
     shortName: "The Sapphire Set",
-    tagline: "Chef knife + paring knife — blue resin handle",
-    price: 0,
+    tagline: "Heirloom chef knife + paring knife — sapphire-blue resin handle",
+    price: 4900,
     sku: "LEO-SAPPHIRE-2P",
     images: [
-      "images/sapphire-1.jpg"
+      "images/sapphire-1.jpg",
+      "images/sapphire-2.jpg",
+      "images/sapphire-3.jpg"
     ],
     description:
-      "A two-piece chef knife set built around hand-poured blue acrylic resin handles, each one unique. The 8-inch chef knife handles every daily task — slicing, dicing, mincing — while the slim paring knife takes care of precision work. Single-piece stainless steel blades, finely ground and polished by hand at our Sialkot workshop.",
+      "A two-piece heirloom chef knife set built around hand-poured sapphire-blue acrylic resin handles — each one slightly unique, no two sets alike. The 8-inch chef knife is full-tang, hand-ground from high-carbon stainless steel, balanced for daily kitchen work. The matching 3.5-inch paring knife handles every precision task. Both blades are mirror-polished and hand-finished at our Pakistan Knife Factory workshop in Sialkot. Presented in a satin-lined gift box, ready to keep — or to give.",
     includes: [
-      "8-inch chef knife",
-      "3.5-inch paring knife",
-      "Blue acrylic resin handles, triple-riveted",
-      "Black presentation gift box"
+      "8-inch full-tang chef knife — high-carbon stainless steel",
+      "3.5-inch paring knife — hand-ground edge",
+      "Sapphire-blue acrylic resin handles, triple-riveted",
+      "Hand-finished black presentation gift box, satin-lined"
     ]
   },
   {
-    id: "olive",
-    slug: "chef-knife-set-olive",
-    name: "Olive Chef Knife Set",
-    shortName: "The Olive Set",
-    tagline: "Chef knife + paring knife — olive wood handle",
-    price: 0,
-    sku: "LEO-OLIVE-2P",
+    id: "teak",
+    slug: "chef-knife-set-teak",
+    name: "Teak Chef Knife Set",
+    shortName: "The Teak Set",
+    tagline: "Heirloom chef knife + paring knife — natural teak wood handle",
+    price: 4900,
+    sku: "LEO-TEAK-2P",
     images: [
-      "images/olive-1.jpg"
+      "images/teak-1.jpg",
+      "images/teak-2.jpg",
+      "images/teak-3.png",
+      "images/teak-4.jpg"
     ],
     description:
-      "Our heritage chef knife set. Wide-bellied 8-inch chef knife paired with a matching paring knife, both fitted with natural olive wood handles — no two pieces alike. Designed to last a generation, presented in a hand-finished black gift box.",
+      "Our heritage chef knife set. A wide-bellied 8-inch chef knife paired with a matching paring knife, both fitted with natural teak wood handles — close-grained, warm-toned, no two pieces alike. Teak's natural oils make it stable, hard-wearing and a pleasure to hold. Full-tang construction, single-piece high-carbon stainless steel blades, hand-ground and mirror-polished at our Pakistan Knife Factory workshop in Sialkot. Designed to last a generation, presented in a hand-finished satin-lined gift box.",
     includes: [
-      "8-inch chef knife",
-      "3.5-inch paring knife",
-      "Natural olive wood handles, triple-riveted",
-      "Black presentation gift box"
+      "8-inch full-tang chef knife — high-carbon stainless steel",
+      "3.5-inch paring knife — hand-ground edge",
+      "Natural teak wood handles, triple-riveted (each piece unique)",
+      "Hand-finished black presentation gift box, satin-lined"
     ]
   }
 ];

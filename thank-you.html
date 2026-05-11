@@ -11,13 +11,17 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand" data-brand></a>
+      <a href="index.html" class="brand" aria-label="Chef Knife — Sialkot Pakistan">
+        <span class="brand-line">Chef Knife</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <span class="brand-tag">Sialkot · Pakistan</span>
+      </a>
       <nav class="nav">
         <a href="index.html#shop">Shop</a>
         <a href="index.html#story">Story</a>
@@ -51,7 +55,7 @@
         <p class="muted" data-company-address></p>
       </div>
       <div class="footer-col footer-col-right">
-        <a href="#" class="footer-whatsapp" data-whatsapp-link>WhatsApp <span data-whatsapp-display></span></a>
+        <a href="#" class="footer-whatsapp" data-whatsapp-link>Chat on WhatsApp →</a>
         <p class="muted">&copy; <span data-year></span> <span data-brand></span>. Pakistan only.</p>
       </div>
     </div>

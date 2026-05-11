@@ -1,37 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Last full build: 2026-05-11. Update lastmod on each significant content change. -->
   <url>
     <loc>https://chefknife.pk/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-PK" href="https://chefknife.pk/" />
+    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://chefknife.pk/ur/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chefknife.pk/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://chefknife.pk/images/olive-1.jpg</image:loc>
-      <image:title>Olive chef knife set — Chef Knife, Sialkot</image:title>
+      <image:loc>https://chefknife.pk/images/teak-1.jpg</image:loc>
+      <image:title>Teak chef knife set — Chef Knife, Sialkot</image:title>
+      <image:caption>Premium teak chef knife set hand-forged in Sialkot, Pakistan.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://chefknife.pk/images/sapphire-1.jpg</image:loc>
       <image:title>Sapphire chef knife set — Chef Knife, Sialkot</image:title>
+      <image:caption>Premium sapphire-blue resin chef knife set hand-forged in Sialkot, Pakistan.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://chefknife.pk/chef-knife-set-sapphire.html</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-PK" href="https://chefknife.pk/chef-knife-set-sapphire.html" />
+    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://chefknife.pk/ur/chef-knife-set-sapphire.html" />
     <image:image>
       <image:loc>https://chefknife.pk/images/sapphire-1.jpg</image:loc>
       <image:title>Sapphire chef knife set with blue resin handle</image:title>
-      <image:caption>Sapphire chef knife set by Chef Knife — 8-inch chef knife and 3.5-inch paring knife with blue acrylic resin handles, made in Sialkot, Pakistan.</image:caption>
+      <image:caption>Premium Sapphire chef knife set by Chef Knife — full-tang 8-inch chef knife and 3.5-inch paring knife with hand-poured sapphire-blue acrylic resin handles, hand-forged in Sialkot, Pakistan.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://chefknife.pk/images/sapphire-2.jpg</image:loc>
+      <image:title>Sapphire chef knife set — knives next to closed gift box</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://chefknife.pk/images/sapphire-3.jpg</image:loc>
+      <image:title>Sapphire chef knife set — knives on top of closed gift box</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://chefknife.pk/chef-knife-set-olive.html</loc>
+    <loc>https://chefknife.pk/chef-knife-set-teak.html</loc>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-PK" href="https://chefknife.pk/chef-knife-set-teak.html" />
+    <xhtml:link rel="alternate" hreflang="ur-PK" href="https://chefknife.pk/ur/chef-knife-set-teak.html" />
     <image:image>
-      <image:loc>https://chefknife.pk/images/olive-1.jpg</image:loc>
-      <image:title>Olive chef knife set with olive wood handle</image:title>
-      <image:caption>Olive chef knife set by Chef Knife — 8-inch chef knife and 3.5-inch paring knife with natural olive wood handles, made in Sialkot, Pakistan.</image:caption>
+      <image:loc>https://chefknife.pk/images/teak-1.jpg</image:loc>
+      <image:title>Teak chef knife set with teak wood handle</image:title>
+      <image:caption>Premium Teak chef knife set by Chef Knife — full-tang 8-inch chef knife and 3.5-inch paring knife with natural teak wood handles, hand-forged in Sialkot, Pakistan.</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://chefknife.pk/images/teak-2.jpg</image:loc>
+      <image:title>Teak chef knife set — knives on closed gift box</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://chefknife.pk/images/teak-3.png</image:loc>
+      <image:title>Teak chef knife set — close-up of natural teak wood handles</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://chefknife.pk/images/teak-4.jpg</image:loc>
+      <image:title>Teak chef knife set — knives presented inside open gift box</image:title>
+    </image:image>
+  </url>
+
+  <!-- City delivery landing pages -->
+  <url>
+    <loc>https://chefknife.pk/chef-knife-karachi.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-lahore.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-islamabad.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-rawalpindi.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-faisalabad.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-gujranwala.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-sialkot.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-gujrat.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-multan.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-sargodha.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/chef-knife-peshawar.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Seasonal gift guides -->
+  <url>
+    <loc>https://chefknife.pk/wedding-gift-chef-knife.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/eid-gift-chef-knife.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Urdu (RTL) pages -->
+  <url>
+    <loc>https://chefknife.pk/ur/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/ur/chef-knife-set-sapphire.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chefknife.pk/ur/chef-knife-set-teak.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

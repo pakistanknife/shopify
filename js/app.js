@@ -15,6 +15,27 @@
   const mainImage  = (product) =>
     (product.images && product.images[0]) || product.image || "";
 
+  // Convert an image src like "images/teak-1.jpg" into the WebP srcset spec
+  // used inside <picture><source>. PNG inputs are also supported.
+  function webpSourceFor(src) {
+    if (!src) return null;
+    const m = src.match(/^(.*?)\.(jpe?g|png)$/i);
+    if (!m) return null;
+    const base = m[1];
+    return `${base}-480.webp 480w, ${base}-960.webp 960w`;
+  }
+
+  // Build a <picture> element string with WebP source + fallback <img>.
+  function pictureTag({ src, alt, sizes, loading = "lazy", extraImgAttrs = "" }) {
+    const webp = webpSourceFor(src);
+    const imgTag = `<img src="${src}" alt="${alt}" loading="${loading}" ${extraImgAttrs} onerror="this.style.display='none'" />`;
+    if (!webp) return imgTag;
+    return `<picture>
+      <source type="image/webp" srcset="${webp}" sizes="${sizes || '100vw'}">
+      ${imgTag}
+    </picture>`;
+  }
+
   // ---------- cart store ----------
   function loadCart() {
     try {
@@ -89,10 +110,11 @@
 
     $$("[data-company-legal]").forEach((el) => (el.textContent = CONFIG.company.legalName));
     $$("[data-company-address]").forEach((el) => {
-      el.textContent = CONFIG.company.addressLine1 + " · " +
-        CONFIG.company.city + " " + CONFIG.company.postalCode + ", " + CONFIG.company.country;
+      const c = CONFIG.company;
+      const line1 = c.addressLine1;
+      const line2 = c.city + " " + c.postalCode + ", " + c.country;
+      el.innerHTML = line1 + "<br>" + line2;
     });
-    $$("[data-whatsapp-display]").forEach((el) => (el.textContent = CONFIG.whatsappDisplay || ""));
 
     $$("[data-whatsapp-link]").forEach((el) => {
       el.href = "https://wa.me/" + CONFIG.whatsapp;
@@ -110,7 +132,12 @@
     grid.innerHTML = PRODUCTS.map((p) => `
       <a class="product-card" href="${productUrl(p)}" aria-label="${p.name} — view details">
         <div class="product-card-media">
-          <img src="${mainImage(p)}" alt="${p.name} — chef knife and paring knife by Chef Knife, made in Sialkot Pakistan" loading="lazy" onerror="this.classList.add('placeholder')" />
+          ${pictureTag({
+            src: mainImage(p),
+            alt: `${p.name} — chef knife and paring knife by Chef Knife, hand-forged in Sialkot Pakistan`,
+            sizes: "(max-width: 860px) 100vw, 1280px",
+            loading: "lazy"
+          })}
         </div>
         <div class="product-card-body">
           <h3 class="product-card-title">${p.name}</h3>
@@ -121,7 +148,7 @@
     `).join("");
   }
 
-  // ---------- product detail page (static HTML, JS handles interactivity + price) ----------
+  // ---------- product detail page (static HTML, JS handles interactivity + price + gallery) ----------
   function bindProductDetail() {
     const addBtn = $("[data-add-to-cart][data-product-id]");
     if (!addBtn) return;
@@ -134,6 +161,31 @@
     const priceEl = $("[data-product-price]");
     if (priceEl && product.price) {
       priceEl.textContent = formatPKR(product.price);
+    }
+
+    // Sync main image with first configured image, then render extras stacked below
+    const mainImg = $("[data-main-image]");
+    const images = (product.images && product.images.length) ? product.images : [product.image].filter(Boolean);
+    if (mainImg && images.length > 0) {
+      mainImg.src = images[0];
+    }
+
+    // Extra photos: stack additional views below the main image, same column width.
+    // When the array has no additional images the container stays empty and is
+    // hidden by the CSS `:empty` rule.
+    const extras = $("[data-extra-images]");
+    if (extras) {
+      const additional = images.slice(1);
+      extras.innerHTML = additional.map((src, i) => `
+        <figure>
+          ${pictureTag({
+            src,
+            alt: `${product.name} — additional view ${i + 2}`,
+            sizes: "(max-width: 860px) 100vw, 50vw",
+            loading: "lazy"
+          })}
+        </figure>
+      `).join("");
     }
 
     const qtyInput = $("[data-qty-input]");
@@ -263,21 +315,67 @@
     $("[data-order-subtotal-hidden]").value = formatPKR(subtotal);
     $("[data-order-total-hidden]").value = formatPKR(subtotal);
 
-    $$("[data-easypaisa]").forEach((el) => (el.textContent = CONFIG.payment.easypaisaNumber));
-    $$("[data-jazzcash]").forEach((el) => (el.textContent = CONFIG.payment.jazzcashNumber));
-    $$("[data-account-name]").forEach((el) => (el.textContent = CONFIG.payment.accountName));
+    const ep = CONFIG.payment.easypaisa || {};
+    const jc = CONFIG.payment.jazzcash || {};
+
+    $$("[data-easypaisa-number]").forEach((el) => (el.textContent = ep.number || ""));
+    $$("[data-easypaisa-name]").forEach((el) => (el.textContent = ep.accountName || ""));
+    $$("[data-jazzcash-tillid]").forEach((el) => (el.textContent = jc.tillId || ""));
+    $$("[data-jazzcash-name]").forEach((el) => (el.textContent = jc.shopName || ""));
+    $$("[data-jazzcash-ussd]").forEach((el) => (el.textContent = jc.ussd || ""));
+
     const epQR = $("[data-easypaisa-qr]");
     const jcQR = $("[data-jazzcash-qr]");
-    if (epQR) epQR.src = CONFIG.payment.easypaisaQR;
-    if (jcQR) jcQR.src = CONFIG.payment.jazzcashQR;
+    if (epQR && ep.qr) epQR.src = ep.qr;
+    if (jcQR && jc.qr) jcQR.src = jc.qr;
 
-    const fileInput = $("[data-screenshot]", form);
-    const hint = $("[data-upload-hint]", form);
-    if (fileInput && hint) {
-      fileInput.addEventListener("change", () => {
-        const f = fileInput.files && fileInput.files[0];
-        hint.textContent = f ? f.name : "Choose file — image or PDF";
-      });
+  }
+
+  // ---------- Trustpilot widgets ----------
+  // Standard public Trustpilot template IDs (stable, documented).
+  const TP_TEMPLATES = {
+    "micro-star":  { id: "5419b732fbfb950b10de65e5", height: "24px"  },
+    "micro-combo": { id: "5419b6a8b0d04a076446a9ad", height: "24px"  },
+    "mini":        { id: "53aa8807dec7e10d38f59f32", height: "150px" },
+    "horizontal":  { id: "5406e65db0d04a09e042d5fc", height: "32px"  },
+    "carousel":    { id: "53aa8912dec7e10d38f59f36", height: "240px" },
+    "hero":        { id: "5717796816f630043868e2e9", height: "350px" }
+  };
+
+  function hydrateTrustpilot() {
+    const tp = CONFIG.trustpilot || {};
+    const slots = $$("[data-tp-template]");
+    if (!tp.businessUnitId || slots.length === 0) return;
+
+    slots.forEach((slot) => {
+      const key = slot.dataset.tpTemplate;
+      const tpl = TP_TEMPLATES[key];
+      if (!tpl) return;
+      slot.classList.add("trustpilot-widget");
+      slot.setAttribute("data-locale", tp.locale || "en-US");
+      slot.setAttribute("data-template-id", tpl.id);
+      slot.setAttribute("data-businessunit-id", tp.businessUnitId);
+      slot.setAttribute("data-style-height", tpl.height);
+      slot.setAttribute("data-style-width", "100%");
+      slot.setAttribute("data-theme", "light");
+      if (tp.reviewUrl && !slot.querySelector("a")) {
+        const a = document.createElement("a");
+        a.href = tp.reviewUrl;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = "Trustpilot";
+        slot.appendChild(a);
+      }
+      slot.classList.add("is-active");
+    });
+
+    // Inject bootstrap script (Trustpilot scans the DOM on load).
+    if (!document.querySelector("script[data-tp-bootstrap]")) {
+      const s = document.createElement("script");
+      s.src = "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+      s.async = true;
+      s.dataset.tpBootstrap = "1";
+      document.body.appendChild(s);
     }
   }
 
@@ -289,5 +387,6 @@
     bindProductDetail();
     renderCartPage();
     renderCheckoutPage();
+    hydrateTrustpilot();
   });
 })();
