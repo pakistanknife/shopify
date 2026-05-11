@@ -10,12 +10,12 @@
 
 We sell two premium chef knife sets, both priced at **PKR 4,900 delivered** anywhere in Pakistan.
 
-- [Sapphire Chef Knife Set](https://chefknife.pk/chef-knife-set-sapphire.html) —
+- [Sapphire Chef Knife Set](https://shop-chef-knife.netlify.app/chef-knife-set-sapphire.html) —
   Full-tang 8-inch chef knife + 3.5-inch paring knife. Hand-poured sapphire-blue
   acrylic resin handles, triple-riveted. Mirror-polished high-carbon stainless
   steel blades. Presented in a satin-lined black gift box.
 
-- [Teak Chef Knife Set](https://chefknife.pk/chef-knife-set-teak.html) —
+- [Teak Chef Knife Set](https://shop-chef-knife.netlify.app/chef-knife-set-teak.html) —
   Full-tang 8-inch chef knife + 3.5-inch paring knife. Natural teak wood handles
   (each piece unique), triple-riveted. Mirror-polished high-carbon stainless steel
   blades. Presented in a satin-lined black gift box.
@@ -69,4 +69,4 @@ delivered, with payment via EasyPaisa or JazzCash.
 
 ## Sitemap
 
-https://chefknife.pk/sitemap.xml
+https://shop-chef-knife.netlify.app/sitemap.xml

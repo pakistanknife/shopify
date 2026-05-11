@@ -6,9 +6,9 @@ const CONFIG = {
   brand: "Chef Knife",
   tagline: "Heirloom-grade chef knife sets, handcrafted in Sialkot, Pakistan.",
 
-  // !! Update once you have a final domain (e.g. https://chefknife.pk).
+  // !! Update once you have a final domain (e.g. https://shop-chef-knife.netlify.app).
   // Used for canonical URLs, sitemap, and Open Graph tags.
-  siteUrl: "https://chefknife.pk",
+  siteUrl: "https://shop-chef-knife.netlify.app",
 
   // Company / legal info — we are the physical manufacturer, not a reseller.
   // Note: precise street address intentionally omitted from the public site.
@@ -51,7 +51,7 @@ const CONFIG = {
   // -----------------------------------------------------------------
   // Activation steps:
   //   1. Create a Business account: https://business.trustpilot.com/signup
-  //   2. Verify the chefknife.pk domain (Trustpilot will email a TXT record
+  //   2. Verify the shop-chef-knife.netlify.app domain (Trustpilot will email a TXT record
   //      to add to your DNS — same dashboard where you add Netlify DNS).
   //   3. Once approved, find your Business Unit ID in the dashboard URL:
   //      https://business.trustpilot.com/reviews/<businessUnitId>
@@ -64,7 +64,7 @@ const CONFIG = {
   trustpilot: {
     businessUnitId: "",         // e.g. "5e5d7f4a8b4f7a0001a3c1e2"
     locale: "en-US",            // change to "ur-PK" on /ur/ pages if Trustpilot adds Urdu later
-    reviewUrl: "https://www.trustpilot.com/review/chefknife.pk"
+    reviewUrl: "https://www.trustpilot.com/review/shop-chef-knife.netlify.app"
   }
 };
 
