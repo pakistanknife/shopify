@@ -102,7 +102,7 @@ const PRODUCTS = [
     images: [
       "images/teak-1.jpg",
       "images/teak-2.jpg",
-      "images/teak-3.png",
+      "images/teak-3.jpg",
       "images/teak-4.jpg"
     ],
     description:
