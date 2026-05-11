@@ -22,7 +22,7 @@
     const m = src.match(/^(.*?)\.(jpe?g|png)$/i);
     if (!m) return null;
     const base = m[1];
-    return `${base}-480.webp 480w, ${base}-960.webp 960w`;
+    return `${base}-480.webp 480w, ${base}-960.webp 960w, ${base}-1600.webp 1600w`;
   }
 
   // Build a <picture> element string with WebP source + fallback <img>.
