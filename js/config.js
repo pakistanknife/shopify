@@ -75,7 +75,7 @@ const PRODUCTS = [
     name: "Sapphire Chef Knife Set",
     shortName: "The Sapphire Set",
     tagline: "Heirloom chef knife + paring knife — sapphire-blue resin handle",
-    price: 4900,
+    price: 6700,
     sku: "LEO-SAPPHIRE-2P",
     images: [
       "images/sapphire-1.jpg",
@@ -97,7 +97,7 @@ const PRODUCTS = [
     name: "Teak Chef Knife Set",
     shortName: "The Teak Set",
     tagline: "Heirloom chef knife + paring knife — natural teak wood handle",
-    price: 4900,
+    price: 6700,
     sku: "LEO-TEAK-2P",
     images: [
       "images/teak-1.jpg",
