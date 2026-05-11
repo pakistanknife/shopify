@@ -981,14 +981,7 @@ img { max-width: 100%; display: block; }
 }
 .payment-method {
   position: relative;
-  cursor: pointer;
   display: flex;
-}
-.payment-method input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
 }
 .payment-card {
   width: 100%;
@@ -1000,12 +993,6 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg);
-  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
-}
-.payment-method input:checked + .payment-card {
-  border-color: var(--ink);
-  background: #fff;
-  box-shadow: 0 0 0 1px var(--ink) inset;
 }
 .payment-card-head {
   display: flex;

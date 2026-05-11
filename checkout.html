@@ -48,7 +48,6 @@
           <input type="text" name="order_items" />
           <input type="text" name="order_subtotal" />
           <input type="text" name="order_total" />
-          <input type="text" name="payment_method" />
           <input type="text" name="payment_reference" />
         </form>
 
@@ -60,7 +59,6 @@
             action="/thank-you.html"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            enctype="multipart/form-data"
             data-checkout-form
           >
             <input type="hidden" name="form-name" value="order" />
@@ -110,8 +108,7 @@
               </p>
 
               <div class="payment-methods">
-                <label class="payment-method">
-                  <input type="radio" name="payment_method" value="EasyPaisa" required />
+                <div class="payment-method">
                   <div class="payment-card">
                     <div class="payment-card-head">
                       <img class="payment-logo" src="images/logo-easypaisa.png" alt="easypaisa digital bank" />
@@ -127,10 +124,9 @@
                       </ol>
                     </div>
                   </div>
-                </label>
+                </div>
 
-                <label class="payment-method">
-                  <input type="radio" name="payment_method" value="JazzCash" required />
+                <div class="payment-method">
                   <div class="payment-card">
                     <div class="payment-card-head">
                       <img class="payment-logo" src="images/logo-jazzcash.png" alt="JazzCash" />
@@ -146,7 +142,7 @@
                       </ol>
                     </div>
                   </div>
-                </label>
+                </div>
               </div>
 
               <label class="field">

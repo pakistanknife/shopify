@@ -328,7 +328,6 @@
     const jcQR = $("[data-jazzcash-qr]");
     if (epQR && ep.qr) epQR.src = ep.qr;
     if (jcQR && jc.qr) jcQR.src = jc.qr;
-
   }
 
   // ---------- Trustpilot widgets ----------
