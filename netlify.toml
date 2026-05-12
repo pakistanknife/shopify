@@ -1,5 +1,6 @@
 [build]
   publish = "."
+  command = "npm install"
 
 # ---------- Redirects ----------
 # Redirect legacy product URLs (from earlier dev) to the SEO-friendly URLs

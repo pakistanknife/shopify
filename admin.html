@@ -189,9 +189,18 @@
   // ── Load ──────────────────────────────────────────────────────────────
   async function loadOrders() {
     ordersBox.innerHTML = '<div class="state-msg">Loading orders…</div>';
-    const res = await apiFetch('?action=list', token);
-    if (res.status === 401) { token = ''; sessionStorage.removeItem('ck_admin'); return; }
-    renderOrders(await res.json());
+    try {
+      const res = await apiFetch('?action=list', token);
+      if (res.status === 401) { token = ''; sessionStorage.removeItem('ck_admin'); return; }
+      const data = await res.json();
+      if (!Array.isArray(data)) {
+        ordersBox.innerHTML = '<div class="state-msg">Error: ' + x(JSON.stringify(data)) + '</div>';
+        return;
+      }
+      renderOrders(data);
+    } catch (err) {
+      ordersBox.innerHTML = '<div class="state-msg">Network error: ' + x(err.message) + '</div>';
+    }
   }
 
   function apiFetch(qs, pw, opts = {}) {
