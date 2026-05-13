@@ -449,7 +449,6 @@ img { max-width: 100%; display: block; }
   background: var(--bg);
   overflow: hidden;
   position: relative;
-  min-height: 1px;
 }
 .product-card-media::after {
   content: "Photo coming soon";

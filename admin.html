@@ -15,9 +15,10 @@
       --champagne: #B89968;
       --muted: #888;
       --border: #E0D8CC;
+      --red: #c0392b;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     [hidden] { display: none !important; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; font-size: 14px; background: var(--ecru); color: var(--ink); min-height: 100vh; }
 
     /* ── Login ── */
@@ -31,7 +32,7 @@
     .field input:focus { border-color: var(--champagne); }
     .btn-primary { width: 100%; padding: 12px; background: var(--ink); color: var(--ecru); border: none; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; margin-top: 8px; }
     .btn-primary:hover { background: #2d2a24; }
-    .error-msg { color: #c0392b; font-size: 13px; margin-top: 12px; text-align: center; }
+    .error-msg { color: var(--red); font-size: 13px; margin-top: 12px; text-align: center; }
 
     /* ── Dashboard ── */
     #dashboard { min-height: 100vh; }
@@ -55,8 +56,11 @@
     .filter-btn { padding: 6px 14px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; color: var(--muted); }
     .filter-btn.active { background: var(--ink); color: var(--ecru); border-color: var(--ink); }
     .filter-btn:hover:not(.active) { border-color: var(--ink); color: var(--ink); }
-    .refresh-btn { margin-left: auto; padding: 6px 14px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 12px; cursor: pointer; }
-    .refresh-btn:hover { border-color: var(--champagne); }
+    .search-input { padding: 6px 12px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 13px; width: 200px; outline: none; }
+    .search-input:focus { border-color: var(--champagne); }
+    .toolbar-right { margin-left: auto; display: flex; gap: 8px; }
+    .btn-tool { padding: 6px 14px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 12px; cursor: pointer; }
+    .btn-tool:hover { border-color: var(--champagne); color: var(--champagne); }
 
     /* Table */
     .table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); }
@@ -69,14 +73,20 @@
     .date-cell { color: var(--muted); font-size: 11px; white-space: nowrap; }
     .items-cell { max-width: 180px; font-size: 12px; }
     .total-cell { font-weight: 600; white-space: nowrap; }
+    .phone-link { color: inherit; text-decoration: none; }
+    .phone-link:hover { color: var(--champagne); }
     .badge { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; border-radius: 2px; }
     .badge-pending { background: #FFF3CD; color: #856404; }
     .badge-shipped { background: #D1FAE5; color: #065F46; }
     .ship-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
     .ship-toggle input { cursor: pointer; width: 15px; height: 15px; accent-color: var(--champagne); }
-    .btn-print { padding: 5px 12px; background: transparent; border: 1px solid var(--champagne); color: var(--champagne); font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+    .actions-cell { display: flex; gap: 6px; align-items: center; }
+    .btn-print { padding: 5px 10px; background: transparent; border: 1px solid var(--champagne); color: var(--champagne); font-family: inherit; font-size: 11px; cursor: pointer; white-space: nowrap; }
     .btn-print:hover { background: var(--champagne); color: #fff; }
+    .btn-delete { padding: 5px 10px; background: transparent; border: 1px solid #ddd; color: #aaa; font-family: inherit; font-size: 11px; cursor: pointer; }
+    .btn-delete:hover { border-color: var(--red); color: var(--red); }
     .state-msg { padding: 48px; text-align: center; color: var(--muted); }
+    .ship-error { font-size: 10px; color: var(--red); margin-top: 3px; }
 
     /* ── Print ── */
     @media print {
@@ -88,27 +98,21 @@
 </head>
 <body>
 
-<!-- LOGIN ─────────────────────────────────── -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
     <p class="login-title">Chef Knife</p>
     <p class="login-sub">Order Management</p>
     <form id="login-form">
-      <label class="field">
-        <span>Email</span>
-        <input type="email" id="login-email" autocomplete="email" required>
-      </label>
-      <label class="field">
-        <span>Password</span>
-        <input type="password" id="login-password" autocomplete="current-password" required>
-      </label>
+      <label class="field"><span>Email</span><input type="email" id="login-email" autocomplete="email" required></label>
+      <label class="field"><span>Password</span><input type="password" id="login-password" autocomplete="current-password" required></label>
       <button type="submit" class="btn-primary">Sign in</button>
       <p id="login-error" class="error-msg" hidden>Invalid credentials.</p>
     </form>
   </div>
 </div>
 
-<!-- DASHBOARD ──────────────────────────────── -->
+<!-- DASHBOARD -->
 <div id="dashboard" hidden>
   <header class="admin-header">
     <span class="admin-brand">Chef Knife <span>/ Orders</span></span>
@@ -121,41 +125,47 @@
   <main class="admin-main">
     <div class="stats-bar">
       <div class="stat-card"><div class="stat-value" id="stat-total">—</div><div class="stat-label">Total</div></div>
-      <div class="stat-card"><div class="stat-value" id="stat-pending">—</div><div class="stat-label">Pending</div></div>
-      <div class="stat-card"><div class="stat-value" id="stat-shipped">—</div><div class="stat-label">Shipped</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-pending">—</div><div class="stat-label">En attente</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-shipped">—</div><div class="stat-label">Expédiées</div></div>
     </div>
 
     <div class="toolbar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="pending">Pending</button>
-      <button class="filter-btn" data-filter="shipped">Shipped</button>
-      <button class="refresh-btn" id="refresh-btn">↻ Refresh</button>
+      <button class="filter-btn active" data-filter="all">Toutes</button>
+      <button class="filter-btn" data-filter="pending">En attente</button>
+      <button class="filter-btn" data-filter="shipped">Expédiées</button>
+      <input class="search-input" id="search-input" type="text" placeholder="Rechercher nom, ville…">
+      <div class="toolbar-right">
+        <button class="btn-tool" id="csv-btn">↓ CSV</button>
+        <button class="btn-tool" id="refresh-btn">↻ Actualiser</button>
+      </div>
     </div>
 
-    <div id="orders-container"><div class="state-msg">Loading orders…</div></div>
+    <div id="orders-container"><div class="state-msg">Chargement…</div></div>
   </main>
 </div>
 
-<!-- PRINT FRAME ────────────────────────────── -->
+<!-- PRINT FRAME -->
 <div id="print-frame"></div>
 
 <script>
 (function () {
   'use strict';
-  const API = '/.netlify/functions/admin-orders';
+  const API     = '/.netlify/functions/admin-orders';
   const ALLOWED = ['kazam.q@gmail.com', 'ayemenqureshi@gmail.com'];
 
-  let token = sessionStorage.getItem('ck_admin') || '';
+  // localStorage → session survive les rechargements
+  let token     = localStorage.getItem('ck_admin') || '';
   let allOrders = [];
-  let filter = 'all';
+  let filter    = 'all';
+  let search    = '';
 
-  const loginScreen   = document.getElementById('login-screen');
-  const dash          = document.getElementById('dashboard');
-  const loginForm     = document.getElementById('login-form');
-  const loginError    = document.getElementById('login-error');
-  const ordersBox     = document.getElementById('orders-container');
+  const loginScreen = document.getElementById('login-screen');
+  const dash        = document.getElementById('dashboard');
+  const loginForm   = document.getElementById('login-form');
+  const loginError  = document.getElementById('login-error');
+  const ordersBox   = document.getElementById('orders-container');
+  const searchInput = document.getElementById('search-input');
 
-  // ── Auto-restore session ──────────────────────────────────────────────
   if (token) { showDash(); loadOrders(); }
 
   // ── Login ─────────────────────────────────────────────────────────────
@@ -166,50 +176,50 @@
     if (!ALLOWED.includes(email)) { loginError.hidden = false; return; }
     loginError.hidden = true;
     const btn = loginForm.querySelector('button');
-    btn.textContent = 'Signing in…';
-    btn.disabled = true;
+    btn.textContent = 'Connexion…'; btn.disabled = true;
     try {
-      const res = await apiFetch('?action=list', pw);
+      const res = await api('?action=list', pw);
       if (res.status === 401) { loginError.hidden = false; return; }
-      token = pw;
-      sessionStorage.setItem('ck_admin', token);
-      showDash();
       const data = await res.json();
+      if (!Array.isArray(data)) { loginError.hidden = false; return; }
+      token = pw;
+      localStorage.setItem('ck_admin', token);
+      showDash();
       renderOrders(data);
-    } finally {
-      btn.textContent = 'Sign in';
-      btn.disabled = false;
-    }
+    } catch { loginError.hidden = false; }
+    finally { btn.textContent = 'Sign in'; btn.disabled = false; }
   });
 
   document.getElementById('logout-btn').addEventListener('click', () => {
-    token = ''; sessionStorage.removeItem('ck_admin');
+    token = ''; localStorage.removeItem('ck_admin');
     dash.hidden = true; loginScreen.hidden = false;
   });
 
-  // ── Load ──────────────────────────────────────────────────────────────
+  // ── Data ──────────────────────────────────────────────────────────────
   async function loadOrders() {
-    ordersBox.innerHTML = '<div class="state-msg">Loading orders…</div>';
+    ordersBox.innerHTML = '<div class="state-msg">Chargement…</div>';
     try {
-      const res = await apiFetch('?action=list', token);
-      if (res.status === 401) { token = ''; sessionStorage.removeItem('ck_admin'); return; }
+      const res = await api('?action=list', token);
+      if (res.status === 401) { logout(); return; }
       const data = await res.json();
       if (!Array.isArray(data)) {
-        ordersBox.innerHTML = '<div class="state-msg">Error: ' + x(JSON.stringify(data)) + '</div>';
+        ordersBox.innerHTML = '<div class="state-msg">Erreur : ' + x(JSON.stringify(data)) + '</div>';
         return;
       }
       renderOrders(data);
     } catch (err) {
-      ordersBox.innerHTML = '<div class="state-msg">Network error: ' + x(err.message) + '</div>';
+      ordersBox.innerHTML = '<div class="state-msg">Erreur réseau : ' + x(err.message) + '</div>';
     }
   }
 
-  function apiFetch(qs, pw, opts = {}) {
+  function api(qs, pw, opts = {}) {
     return fetch(API + qs, {
       ...opts,
-      headers: { Authorization: 'Bearer ' + pw, 'Content-Type': 'application/json', ...(opts.headers || {}) }
+      headers: { Authorization: 'Bearer ' + pw, 'Content-Type': 'application/json', ...(opts.headers||{}) }
     });
   }
+
+  function logout() { token = ''; localStorage.removeItem('ck_admin'); location.reload(); }
 
   // ── Render ────────────────────────────────────────────────────────────
   function renderOrders(orders) {
@@ -217,7 +227,11 @@
     updateStats(orders);
     renderTable();
     document.getElementById('last-refresh').textContent =
-      'Updated ' + new Date().toLocaleTimeString('en-PK', { hour: '2-digit', minute: '2-digit' });
+      'Mis à jour ' + new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    document.title = (() => {
+      const n = orders.filter(o => !o.shipped).length;
+      return n ? `(${n}) Admin — Chef Knife` : 'Admin — Chef Knife';
+    })();
   }
 
   function updateStats(orders) {
@@ -227,105 +241,116 @@
     document.getElementById('stat-shipped').textContent = shipped;
   }
 
-  function renderTable() {
-    const list = filter === 'shipped' ? allOrders.filter(o =>  o.shipped)
-               : filter === 'pending' ? allOrders.filter(o => !o.shipped)
-               : allOrders;
+  function getVisible() {
+    return allOrders
+      .filter(o => filter === 'all' ? true : filter === 'shipped' ? o.shipped : !o.shipped)
+      .filter(o => {
+        if (!search) return true;
+        const q = search.toLowerCase();
+        const d = o.data || {};
+        return (d.name||'').toLowerCase().includes(q) || (d.city||'').toLowerCase().includes(q) || (d.phone||'').includes(q);
+      });
+  }
 
-    if (!list.length) { ordersBox.innerHTML = '<div class="state-msg">No orders.</div>'; return; }
+  function renderTable() {
+    const list = getVisible();
+    if (!list.length) { ordersBox.innerHTML = '<div class="state-msg">Aucune commande.</div>'; return; }
 
     ordersBox.innerHTML = `<div class="table-wrap"><table>
       <thead><tr>
-        <th>Date</th><th>Name</th><th>Phone</th><th>Address</th><th>City</th>
-        <th>Items</th><th>Total</th><th>Ref. payment</th><th>Status</th><th>Label</th>
+        <th>Date</th><th>Nom</th><th>Téléphone</th><th>Adresse</th><th>Ville</th>
+        <th>Articles</th><th>Total</th><th>Ref. paiement</th><th>Statut</th><th>Actions</th>
       </tr></thead>
       <tbody>${list.map(row).join('')}</tbody>
     </table></div>`;
 
+    bindTableEvents();
+  }
+
+  function row(o) {
+    const d   = o.data || {};
+    const dt  = new Date(o.createdAt);
+    const date = dt.toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' });
+    const time = dt.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+    const cls  = o.shipped ? 'badge-shipped' : 'badge-pending';
+    const lbl  = o.shipped ? 'Expédiée' : 'En attente';
+    const phone = d.phone ? `<a class="phone-link" href="tel:${x(d.phone)}">${x(d.phone)}</a>` : '—';
+    return `<tr class="${o.shipped ? 'is-shipped' : ''}" data-id="${o.id}">
+      <td class="date-cell">${date}<br>${time}</td>
+      <td><strong>${x(d.name)}</strong></td>
+      <td>${phone}</td>
+      <td>${x(d.address)}</td>
+      <td>${x(d.city)}</td>
+      <td class="items-cell">${x(d.order_items)}</td>
+      <td class="total-cell">${x(d.order_total)}</td>
+      <td>${x(d.payment_reference || '—')}</td>
+      <td>
+        <label class="ship-toggle">
+          <input type="checkbox" data-ship="${o.id}" ${o.shipped ? 'checked' : ''}>
+          <span class="badge ${cls}">${lbl}</span>
+        </label>
+        <div class="ship-error" data-ship-error="${o.id}" hidden>Erreur sauvegarde</div>
+      </td>
+      <td class="actions-cell">
+        <button class="btn-print" data-print="${o.id}">Étiquette</button>
+        <button class="btn-delete" data-delete="${o.id}" title="Supprimer">✕</button>
+      </td>
+    </tr>`;
+  }
+
+  function bindTableEvents() {
+    // Ship toggle
     ordersBox.querySelectorAll('[data-ship]').forEach(cb => {
       cb.addEventListener('change', async () => {
-        const id = cb.dataset.ship;
-        cb.disabled = true;
-        await apiFetch('?action=ship', token, {
-          method: 'POST',
-          body: JSON.stringify({ id, shipped: cb.checked })
-        });
-        const o = allOrders.find(x => x.id === id);
-        if (o) o.shipped = cb.checked;
-        updateStats(allOrders);
-        const tr = cb.closest('tr');
-        tr.classList.toggle('is-shipped', cb.checked);
-        const badge = tr.querySelector('.badge');
-        badge.className = 'badge ' + (cb.checked ? 'badge-shipped' : 'badge-pending');
-        badge.textContent = cb.checked ? 'Shipped' : 'Pending';
-        cb.disabled = false;
+        const id      = cb.dataset.ship;
+        const shipped = cb.checked;
+        cb.disabled   = true;
+        const errEl   = ordersBox.querySelector(`[data-ship-error="${id}"]`);
+        try {
+          const res  = await api('?action=ship', token, { method: 'POST', body: JSON.stringify({ id, shipped }) });
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error || 'Erreur');
+          const o = allOrders.find(x => x.id === id);
+          if (o) o.shipped = shipped;
+          updateStats(allOrders);
+          const tr = cb.closest('tr');
+          tr.classList.toggle('is-shipped', shipped);
+          const badge = tr.querySelector('.badge');
+          badge.className = 'badge ' + (shipped ? 'badge-shipped' : 'badge-pending');
+          badge.textContent = shipped ? 'Expédiée' : 'En attente';
+          if (errEl) errEl.hidden = true;
+        } catch {
+          cb.checked = !shipped; // revert
+          if (errEl) errEl.hidden = false;
+        } finally { cb.disabled = false; }
       });
     });
 
+    // Print
     ordersBox.querySelectorAll('[data-print]').forEach(btn => {
       btn.addEventListener('click', () => {
         const o = allOrders.find(x => x.id === btn.dataset.print);
         if (o) printLabel(o);
       });
     });
+
+    // Delete
+    ordersBox.querySelectorAll('[data-delete]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('Supprimer cette commande définitivement ?')) return;
+        const id = btn.dataset.delete;
+        btn.disabled = true;
+        try {
+          await api('?action=delete', token, { method: 'POST', body: JSON.stringify({ id }) });
+          allOrders = allOrders.filter(o => o.id !== id);
+          updateStats(allOrders);
+          renderTable();
+        } catch { btn.disabled = false; alert('Erreur lors de la suppression.'); }
+      });
+    });
   }
 
-  function row(o) {
-    const d    = o.data || {};
-    const date = new Date(o.createdAt).toLocaleDateString('en-PK', { day:'2-digit', month:'short', year:'numeric' });
-    const time = new Date(o.createdAt).toLocaleTimeString('en-PK', { hour:'2-digit', minute:'2-digit' });
-    const cls  = o.shipped ? 'badge-shipped' : 'badge-pending';
-    const lbl  = o.shipped ? 'Shipped' : 'Pending';
-    return `<tr class="${o.shipped ? 'is-shipped' : ''}">
-      <td class="date-cell">${date}<br>${time}</td>
-      <td><strong>${x(d.name)}</strong></td>
-      <td>${x(d.phone)}</td>
-      <td>${x(d.address)}</td>
-      <td>${x(d.city)}</td>
-      <td class="items-cell">${x(d.order_items)}</td>
-      <td class="total-cell">${x(d.order_total)}</td>
-      <td>${x(d.payment_reference || '—')}</td>
-      <td><label class="ship-toggle">
-        <input type="checkbox" data-ship="${o.id}" ${o.shipped ? 'checked' : ''}>
-        <span class="badge ${cls}">${lbl}</span>
-      </label></td>
-      <td><button class="btn-print" data-print="${o.id}">Print</button></td>
-    </tr>`;
-  }
-
-  // ── Print label ───────────────────────────────────────────────────────
-  function printLabel(o) {
-    const d  = o.data || {};
-    const id = 'CK-' + o.id.slice(-6).toUpperCase();
-    const dt = new Date(o.createdAt).toLocaleDateString('en-PK', { day:'2-digit', month:'short', year:'numeric' });
-    document.getElementById('print-frame').innerHTML = `
-      <div style="width:10cm;min-height:6cm;border:2px solid #1A1814;padding:16px;font-family:Arial,sans-serif;font-size:12px;page-break-after:always">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:10px">
-          <div>
-            <div style="font-size:15px;font-weight:700;letter-spacing:2px">CHEF KNIFE</div>
-            <div style="font-size:9px;color:#888;letter-spacing:1px;margin-top:2px">SIALKOT · PAKISTAN</div>
-          </div>
-          <div style="text-align:right;font-size:10px;color:#888;line-height:1.6">
-            <div style="font-weight:600">${x(id)}</div>
-            <div>${x(dt)}</div>
-          </div>
-        </div>
-        <div style="margin-bottom:10px">
-          <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#888;margin-bottom:6px">DELIVER TO</div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:2px">${x(d.name || '')}</div>
-          <div style="font-weight:600;margin-bottom:2px">${x(d.phone || '')}</div>
-          <div>${x(d.address || '')}</div>
-          <div>${x(d.city || '')}${d.postal_code ? ' &ndash; ' + x(d.postal_code) : ''}</div>
-        </div>
-        <div style="border-top:1px solid #ccc;padding-top:8px;font-size:11px;color:#555">
-          <div style="margin-bottom:2px">${x(d.order_items || '')}</div>
-          <div style="font-weight:700">${x(d.order_total || '')}</div>
-        </div>
-      </div>`;
-    window.print();
-  }
-
-  // ── Filter buttons ────────────────────────────────────────────────────
+  // ── Filters & Search ──────────────────────────────────────────────────
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -335,9 +360,65 @@
     });
   });
 
+  searchInput.addEventListener('input', (e) => {
+    search = e.target.value.trim();
+    renderTable();
+  });
+
   document.getElementById('refresh-btn').addEventListener('click', loadOrders);
 
-  // ── Helpers ───────────────────────────────────────────────────────────
+  // ── CSV Export ────────────────────────────────────────────────────────
+  document.getElementById('csv-btn').addEventListener('click', () => {
+    const cols = ['Date','Nom','Téléphone','Email','Adresse','Ville','CP','Articles','Total','Ref. paiement','Statut'];
+    const rows = allOrders.map(o => {
+      const d = o.data || {};
+      const dt = new Date(o.createdAt).toLocaleDateString('fr-FR');
+      return [dt, d.name, d.phone, d.email, d.address, d.city, d.postal_code,
+              d.order_items, d.order_total, d.payment_reference, o.shipped ? 'Expédiée' : 'En attente']
+        .map(v => `"${(v||'').replace(/"/g,'""')}"`).join(',');
+    });
+    const csv  = [cols.join(','), ...rows].join('\n');
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' });
+    const a    = document.createElement('a');
+    a.href     = URL.createObjectURL(blob);
+    a.download = 'commandes-chef-knife-' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+  });
+
+  // ── Print label ───────────────────────────────────────────────────────
+  function printLabel(o) {
+    const d  = o.data || {};
+    const id = 'CK-' + o.id.slice(-6).toUpperCase();
+    document.getElementById('print-frame').innerHTML = `
+      <div style="width:10cm;padding:20px;border:2px solid #1A1814;font-family:Arial,sans-serif;page-break-after:always">
+
+        <!-- Header -->
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #1A1814;padding-bottom:10px;margin-bottom:16px">
+          <div style="font-size:15px;font-weight:700;letter-spacing:3px">CHEF KNIFE</div>
+          <div style="font-size:9px;color:#888;text-align:right">${x(id)}<br>${new Date(o.createdAt).toLocaleDateString('fr-FR')}</div>
+        </div>
+
+        <!-- Recipient — large and prominent -->
+        <div style="margin-bottom:16px">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:#888;margin-bottom:8px">DESTINATAIRE</div>
+          <div style="font-size:18px;font-weight:700;margin-bottom:4px;line-height:1.2">${x(d.name || '')}</div>
+          <div style="font-size:15px;font-weight:600;margin-bottom:6px">${x(d.phone || '')}</div>
+          <div style="font-size:14px;line-height:1.5">
+            ${x(d.address || '')}<br>
+            <strong>${x(d.city || '')}${d.postal_code ? ' ' + x(d.postal_code) : ''}</strong>
+          </div>
+        </div>
+
+        <!-- Order details — small, no amounts -->
+        <div style="border-top:1px solid #ccc;padding-top:10px;font-size:10px;color:#666;line-height:1.5">
+          <div style="font-weight:700;letter-spacing:1px;margin-bottom:4px">COMMANDE</div>
+          <div>${x((d.order_items || '').replace(/\s*-\s*PKR[\d,\s]+/g, '').replace(/\s*-\s*Rs[\d,\s]+/g, ''))}</div>
+        </div>
+      </div>`;
+    window.print();
+  }
+
+  // ── Utils ─────────────────────────────────────────────────────────────
   function showDash() { loginScreen.hidden = true; dash.hidden = false; }
   function x(s) {
     return String(s || '—').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');

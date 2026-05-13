@@ -6,4 +6,4 @@ Disallow: /thank-you.html
 Disallow: /product.html
 Disallow: /admin.html
 
-Sitemap: https://shop-chef-knife.netlify.app/sitemap.xml
+Sitemap: https://chef-knife.pk/sitemap.xml

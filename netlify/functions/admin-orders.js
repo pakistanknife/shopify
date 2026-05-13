@@ -1,6 +1,7 @@
-// Admin API — lists Netlify Forms submissions + manages shipped status via Netlify Blobs.
-// GET  ?action=list  → returns all orders enriched with shipped status
-// POST ?action=ship  body: { id, shipped }  → updates shipped status
+// Admin API
+// GET  ?action=list              → orders + shipped status
+// POST ?action=ship  {id,shipped} → persist status via Blobs
+// POST ?action=delete {id}        → delete submission via Netlify API
 // Auth: Authorization: Bearer <ADMIN_PASSWORD>
 const https = require("https");
 
@@ -10,6 +11,16 @@ const CORS = {
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Content-Type": "application/json",
 };
+
+function getStore() {
+  const { getStore } = require("@netlify/blobs");
+  return getStore({
+    name:      "order-status",
+    siteID:    process.env.SITE_ID,
+    token:     process.env.NETLIFY_TOKEN,
+    consistency: "strong",
+  });
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers: CORS, body: "" };
@@ -22,11 +33,10 @@ exports.handler = async (event) => {
   const action = (event.queryStringParameters || {}).action || "list";
 
   try {
-    // ── List orders ─────────────────────────────────────────────────────
+    // ── List ─────────────────────────────────────────────────────────────
     if (event.httpMethod === "GET" && action === "list") {
       const siteId = process.env.SITE_ID;
       const token  = process.env.NETLIFY_TOKEN;
-
       if (!siteId || !token) {
         return { statusCode: 500, headers: CORS, body: JSON.stringify({ error: "Missing SITE_ID or NETLIFY_TOKEN" }) };
       }
@@ -35,7 +45,6 @@ exports.handler = async (event) => {
       if (!Array.isArray(forms)) {
         return { statusCode: 502, headers: CORS, body: JSON.stringify({ error: "Netlify API error", detail: forms }) };
       }
-
       const form = forms.find((f) => f.name === "order");
       if (!form) return { statusCode: 200, headers: CORS, body: JSON.stringify([]) };
 
@@ -45,17 +54,12 @@ exports.handler = async (event) => {
       );
       if (!Array.isArray(submissions)) return { statusCode: 200, headers: CORS, body: JSON.stringify([]) };
 
-      // Enrich with shipped status — fail gracefully if Blobs unavailable
       let store = null;
-      try {
-        const { getStore } = require("@netlify/blobs");
-        store = getStore("order-status");
-      } catch {}
+      try { store = getStore(); } catch {}
 
       const enriched = await Promise.all(
         submissions.map(async (sub) => {
-          let shipped = false;
-          let shippedAt = null;
+          let shipped = false, shippedAt = null;
           if (store) {
             try {
               const s = await store.get(sub.id, { type: "json" });
@@ -69,15 +73,22 @@ exports.handler = async (event) => {
       return { statusCode: 200, headers: CORS, body: JSON.stringify(enriched) };
     }
 
-    // ── Mark shipped ────────────────────────────────────────────────────
+    // ── Ship / Unship ─────────────────────────────────────────────────────
     if (event.httpMethod === "POST" && action === "ship") {
       const { id, shipped } = JSON.parse(event.body || "{}");
       if (!id) return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Missing id" }) };
-
-      const { getStore } = require("@netlify/blobs");
-      const store = getStore("order-status");
+      const store = getStore();
       await store.setJSON(id, { shipped: Boolean(shipped), shippedAt: shipped ? new Date().toISOString() : null });
+      return { statusCode: 200, headers: CORS, body: JSON.stringify({ ok: true }) };
+    }
 
+    // ── Delete ────────────────────────────────────────────────────────────
+    if (event.httpMethod === "POST" && action === "delete") {
+      const { id } = JSON.parse(event.body || "{}");
+      if (!id) return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: "Missing id" }) };
+      await netlifyDelete(`/submissions/${id}`, process.env.NETLIFY_TOKEN);
+      // Clean up blob status too
+      try { await getStore().delete(id); } catch {}
       return { statusCode: 200, headers: CORS, body: JSON.stringify({ ok: true }) };
     }
 
@@ -89,23 +100,33 @@ exports.handler = async (event) => {
 };
 
 function netlifyGet(path, token) {
+  return netlifyRequest("GET", path, token, null);
+}
+
+function netlifyDelete(path, token) {
+  return netlifyRequest("DELETE", path, token, null);
+}
+
+function netlifyRequest(method, path, token, body) {
   return new Promise((resolve, reject) => {
     const req = https.request(
       {
         hostname: "api.netlify.com",
         path:     `/api/v1${path}`,
-        method:   "GET",
+        method,
         headers:  { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       },
       (res) => {
         let raw = "";
         res.on("data", (c) => (raw += c));
         res.on("end", () => {
-          try { resolve(JSON.parse(raw)); } catch (e) { reject(new Error("Parse error: " + raw.slice(0, 200))); }
+          if (!raw) { resolve({}); return; }
+          try { resolve(JSON.parse(raw)); } catch { resolve(raw); }
         });
       }
     );
     req.on("error", reject);
+    if (body) req.write(body);
     req.end();
   });
 }

@@ -19,7 +19,7 @@
   // used inside <picture><source>. PNG inputs are also supported.
   function webpSourceFor(src) {
     if (!src) return null;
-    const m = src.match(/^(.*?)\.(jpe?g|png)$/i);
+    const m = src.match(/^(.*?)\.(jpe?g)$/i);
     if (!m) return null;
     const base = m[1];
     return `${base}-480.webp 480w, ${base}-960.webp 960w, ${base}-1600.webp 1600w`;
@@ -130,7 +130,7 @@
     const grid = $("[data-product-grid]");
     if (!grid) return;
     grid.innerHTML = PRODUCTS.map((p) => `
-      <a class="product-card" href="${productUrl(p)}" aria-label="${p.name} — view details">
+      <a class="product-card" href="${productUrl(p)}" data-product-id="${p.id}" aria-label="${p.name} — view details">
         <div class="product-card-media">
           ${pictureTag({
             src: mainImage(p),
