@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://chef-knife.pk/index.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://chef-knife.pk/images/teak-1.jpg</image:loc>
+      <image:title>Teak Chef Knife Set — hand-forged in Sialkot Pakistan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://chef-knife.pk/images/sapphire-new.png</image:loc>
+      <image:title>Sapphire Chef Knife Set — hand-forged in Sialkot Pakistan</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-set-sapphire.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://chef-knife.pk/images/sapphire-new.png</image:loc>
+      <image:title>Sapphire Chef Knife Set — 8-inch chef knife and paring knife with blue resin handles, hand-forged in Sialkot Pakistan</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-set-teak.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://chef-knife.pk/images/teak-1.jpg</image:loc>
+      <image:title>Teak Chef Knife Set — 8-inch chef knife and paring knife with natural teak wood handles, hand-forged in Sialkot Pakistan</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://chef-knife.pk/ur/index.html</loc>
@@ -113,5 +130,48 @@
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/chef-knife-wazirabad.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/chef-knife-dha-lahore.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/housewarming-gift-chef-knife.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/chef-knife-bahria-town.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://chef-knife.pk/resin-handle-chef-knife.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/chef-knife-dha-karachi.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://chef-knife.pk/chef-knife-gulberg-lahore.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>
