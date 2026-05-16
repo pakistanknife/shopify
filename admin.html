@@ -78,6 +78,8 @@
     .badge { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; border-radius: 2px; }
     .badge-pending { background: #FFF3CD; color: #856404; }
     .badge-shipped { background: #D1FAE5; color: #065F46; }
+    .badge-spam    { background: #FEE2E2; color: #991B1B; }
+    tr.is-spam td  { opacity: .6; }
     .ship-toggle { display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
     .ship-toggle input { cursor: pointer; width: 15px; height: 15px; accent-color: var(--champagne); }
     .actions-cell { display: flex; gap: 6px; align-items: center; }
@@ -272,10 +274,10 @@
     const dt  = new Date(o.createdAt);
     const date = dt.toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' });
     const time = dt.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
-    const cls  = o.shipped ? 'badge-shipped' : 'badge-pending';
-    const lbl  = o.shipped ? 'Expédiée' : 'En attente';
+    const cls  = o.spam ? 'badge-spam' : o.shipped ? 'badge-shipped' : 'badge-pending';
+    const lbl  = o.spam ? '⚠ Spam' : o.shipped ? 'Expédiée' : 'En attente';
     const phone = d.phone ? `<a class="phone-link" href="tel:${x(d.phone)}">${x(d.phone)}</a>` : '—';
-    return `<tr class="${o.shipped ? 'is-shipped' : ''}" data-id="${o.id}">
+    return `<tr class="${o.spam ? 'is-spam' : o.shipped ? 'is-shipped' : ''}" data-id="${o.id}">
       <td class="date-cell">${date}<br>${time}</td>
       <td><strong>${x(d.name)}</strong></td>
       <td>${phone}</td>

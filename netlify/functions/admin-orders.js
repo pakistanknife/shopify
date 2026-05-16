@@ -49,7 +49,7 @@ exports.handler = async (event) => {
       if (!form) return { statusCode: 200, headers: CORS, body: JSON.stringify([]) };
 
       const submissions = await netlifyGet(
-        `/sites/${siteId}/forms/${form.id}/submissions?per_page=100&sort_field=created_at&sort_order=desc`,
+        `/sites/${siteId}/forms/${form.id}/submissions?per_page=100&sort_field=created_at&sort_order=desc&include_spam=true`,
         token
       );
       if (!Array.isArray(submissions)) return { statusCode: 200, headers: CORS, body: JSON.stringify([]) };
@@ -66,7 +66,7 @@ exports.handler = async (event) => {
               if (s) { shipped = s.shipped || false; shippedAt = s.shippedAt || null; }
             } catch {}
           }
-          return { id: sub.id, createdAt: sub.created_at, data: sub.data, shipped, shippedAt };
+          return { id: sub.id, createdAt: sub.created_at, data: sub.data, shipped, shippedAt, spam: sub.spam || false };
         })
       );
 
