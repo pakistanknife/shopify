@@ -93,36 +93,40 @@
               </p>
 
               <div class="payment-methods">
+                <!-- 1. EasyPaisa -->
                 <div class="payment-method">
                   <div class="payment-card">
-                    <div class="payment-card-head">
-                      <img class="payment-logo" src="images/logo-easypaisa.png" alt="easypaisa digital bank" />
-                      <span class="payment-til" data-easypaisa-number></span>
-                    </div>
-                    <img class="qr" data-easypaisa-qr alt="EasyPaisa QR code for AIMAN JAVED" onerror="this.classList.add('placeholder')" />
-                    <div class="payment-instructions">
-                      <p class="payment-pay-label">How to pay</p>
-                      <ol>
-                        <li>Open the <strong>easypaisa</strong> app &rarr; tap <em>Scan</em></li>
-                        <li>Enter the <strong>total amount</strong> &amp; confirm with your <strong>MPIN</strong></li>
-                      </ol>
+                    <div class="payment-badge">1</div>
+                    <img class="payment-logo" src="images/logo-easypaisa.png" alt="easypaisa" />
+                    <img class="qr" data-easypaisa-qr alt="EasyPaisa QR" onerror="this.classList.add('placeholder')" />
+                    <div class="payment-num-col">
+                      <p class="payment-col-label">Send to number</p>
+                      <strong class="payment-account-number" data-easypaisa-number></strong>
                     </div>
                   </div>
                 </div>
 
+                <!-- 2. JazzCash -->
                 <div class="payment-method">
                   <div class="payment-card">
-                    <div class="payment-card-head">
-                      <img class="payment-logo" src="images/logo-jazzcash.png" alt="JazzCash" />
-                      <span class="payment-til">TILL <span data-jazzcash-tillid></span></span>
+                    <div class="payment-badge">2</div>
+                    <img class="payment-logo" src="images/logo-jazzcash.png" alt="JazzCash" />
+                    <img class="qr" data-jazzcash-qr alt="JazzCash QR" onerror="this.classList.add('placeholder')" />
+                    <div class="payment-num-col">
+                      <p class="payment-col-label">Send to number</p>
+                      <strong class="payment-account-number" data-jazzcash-number></strong>
                     </div>
-                    <img class="qr" data-jazzcash-qr alt="JazzCash Raast QR code for AIMAN JAVEED Shop" onerror="this.classList.add('placeholder')" />
-                    <div class="payment-instructions">
-                      <p class="payment-pay-label">How to pay</p>
-                      <ol>
-                        <li>Open the <strong>JazzCash</strong> app &rarr; tap <em>Scan</em></li>
-                        <li>Enter the <strong>total amount</strong> &amp; confirm with your <strong>MPIN</strong></li>
-                      </ol>
+                  </div>
+                </div>
+
+                <!-- 3. Bank transfer -->
+                <div class="payment-method payment-method--bank">
+                  <div class="payment-card payment-card--bank">
+                    <div class="payment-badge">3</div>
+                    <strong class="payment-bank-title" data-bank-name></strong>
+                    <div class="payment-num-col payment-num-col--full">
+                      <p class="payment-col-label">IBAN</p>
+                      <strong class="payment-iban" data-bank-iban></strong>
                     </div>
                   </div>
                 </div>

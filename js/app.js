@@ -315,19 +315,60 @@
     $("[data-order-subtotal-hidden]").value = formatPKR(subtotal);
     $("[data-order-total-hidden]").value = formatPKR(subtotal);
 
+    // Save order value so thank-you page can pass it to Google Ads
+    form.addEventListener("submit", function () {
+      try { sessionStorage.setItem("pk_order_value", subtotal); } catch (e) {}
+    }, { once: true });
+
     const ep = CONFIG.payment.easypaisa || {};
     const jc = CONFIG.payment.jazzcash || {};
+    const bk = CONFIG.payment.bank || {};
 
     $$("[data-easypaisa-number]").forEach((el) => (el.textContent = ep.number || ""));
     $$("[data-easypaisa-name]").forEach((el) => (el.textContent = ep.accountName || ""));
+    $$("[data-jazzcash-number]").forEach((el) => (el.textContent = jc.number || ""));
     $$("[data-jazzcash-tillid]").forEach((el) => (el.textContent = jc.tillId || ""));
     $$("[data-jazzcash-name]").forEach((el) => (el.textContent = jc.shopName || ""));
     $$("[data-jazzcash-ussd]").forEach((el) => (el.textContent = jc.ussd || ""));
+    $$("[data-bank-name]").forEach((el) => (el.textContent = bk.bankName || ""));
+    $$("[data-bank-account-name]").forEach((el) => (el.textContent = bk.accountName || ""));
+    $$("[data-bank-iban]").forEach((el) => (el.textContent = bk.iban || ""));
 
     const epQR = $("[data-easypaisa-qr]");
     const jcQR = $("[data-jazzcash-qr]");
     if (epQR && ep.qr) epQR.src = ep.qr;
     if (jcQR && jc.qr) jcQR.src = jc.qr;
+  }
+
+  // ---------- Google Ads (gtag) ----------
+  function injectGtag() {
+    const cfg = CONFIG.gads || {};
+    if (!cfg.id) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", cfg.id);
+    if (!document.querySelector("script[data-gtag]")) {
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + cfg.id;
+      s.dataset.gtag = "1";
+      document.head.appendChild(s);
+    }
+  }
+
+  function fireConversion() {
+    const cfg = CONFIG.gads || {};
+    if (!cfg.id || !cfg.conversionLabel) return;
+    if (!window.location.pathname.includes("thank-you")) return;
+    let value = 0;
+    try { value = parseFloat(sessionStorage.getItem("pk_order_value") || "0") || 0; } catch (e) {}
+    window.gtag("event", "conversion", {
+      send_to: cfg.id + "/" + cfg.conversionLabel,
+      value: value,
+      currency: "PKR",
+      transaction_id: ""
+    });
   }
 
   // ---------- Trustpilot widgets ----------
@@ -380,6 +421,7 @@
 
   // ---------- boot ----------
   document.addEventListener("DOMContentLoaded", function () {
+    injectGtag();
     applyBranding();
     updateCartCount();
     renderProductGrid();
@@ -387,5 +429,6 @@
     renderCartPage();
     renderCheckoutPage();
     hydrateTrustpilot();
+    fireConversion();
   });
 })();

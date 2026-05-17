@@ -32,9 +32,16 @@ const CONFIG = {
     // JazzCash merchant account (paid via QR scan or *786*10# + TILL ID)
     jazzcash: {
       shopName: "AIMAN JAVEED Shop",
+      number: "0340 427 9944",
       tillId: "983298157",
       ussd: "*786*10#",
       qr: "images/qr-jazzcash.png"
+    },
+    // HBL bank transfer
+    bank: {
+      bankName: "HBL — Habib Bank",
+      accountName: "AIMAN JAVED",
+      iban: "PK25 HABB 0011827900599903"
     },
     // EasyPaisa "digital bank" merchant — paid via QR scan or Send Money to this number
     easypaisa: {
@@ -61,6 +68,19 @@ const CONFIG = {
   // While `businessUnitId` is empty, no widgets render and no Trustpilot
   // script loads — your page stays clean and fast.
   // -----------------------------------------------------------------
+  // -----------------------------------------------------------------
+  // Google Ads conversion tracking
+  // -----------------------------------------------------------------
+  // conversionLabel: create a "Purchase" conversion action in Google Ads
+  // (Tools → Conversions → New conversion action → Website) and paste
+  // the label part of the snippet here  (e.g. "AbCdEfGhIjKlMnOp12").
+  // Leave empty to disable conversion firing until you have the label.
+  // -----------------------------------------------------------------
+  gads: {
+    id: "AW-18168906554",
+    conversionLabel: ""   // ← paste your conversion label here
+  },
+
   trustpilot: {
     businessUnitId: "",         // e.g. "5e5d7f4a8b4f7a0001a3c1e2"
     locale: "en-US",            // change to "ur-PK" on /ur/ pages if Trustpilot adds Urdu later
