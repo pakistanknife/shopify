@@ -4,3 +4,9 @@ node_modules/
 .vscode/
 .idea/
 *.log
+
+# PHP secrets — created manually on server, never committed
+secrets.php
+
+# Order data — lives on the server, must survive Git deploys
+data/orders.json

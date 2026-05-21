@@ -41,12 +41,9 @@
             class="checkout-form"
             name="order"
             method="POST"
-            action="/thank-you.html"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            action="order.php"
             data-checkout-form
           >
-            <input type="hidden" name="form-name" value="order" />
             <p class="hp" hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
 
             <!-- Hidden inputs populated by JS so the email you receive contains the full order -->
