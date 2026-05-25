@@ -1,9 +1,11 @@
-# ─── Force HTTPS (www.chef-knife.pk is canonical — apex SSL pending) ─────────
+# ─── Canonicalise www → apex, puis force HTTPS ──────────────────────────────
 RewriteEngine On
 
-# Force HTTPS (OVH mutualisé — X-Forwarded-Proto method)
-# NOTE: www→apex redirect is intentionally disabled until an SSL cert is
-# generated for the apex domain (chef-knife.pk) in OVH Manager.
+# 1. Redirect www to apex (chef-knife.pk is the canonical URL)
+RewriteCond %{HTTP_HOST} ^www\.chef-knife\.pk$ [NC]
+RewriteRule (.*) https://chef-knife.pk/$1 [R=301,L]
+
+# 2. Force HTTPS (OVH mutualisé — X-Forwarded-Proto method)
 RewriteCond %{HTTPS} !on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
