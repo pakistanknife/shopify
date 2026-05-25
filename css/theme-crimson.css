@@ -1,0 +1,239 @@
+/* ===================================================
+   theme-crimson.css — "Tranchant Rouge"
+   Concept 5 · Bold Crimson design direction
+   Overrides only — base structure stays in style.css
+   =================================================== */
+
+/* ── CSS variable overrides ── */
+:root {
+  --bg:          #FFFFFF;
+  --bg-soft:     #F7F7F7;
+  --surface:     #FFFFFF;
+  --ink:         #1A1A1A;
+  --ink-soft:    #555555;
+  --muted:       #909090;
+  --line:        #E8E8E8;
+  --accent:      #B71C1C;   /* crimson */
+  --accent-dark: #7F1111;   /* deep crimson for hover */
+  --radius:      3px;
+}
+
+/* ── Headings → Inter heavy (already loaded) ── */
+h1, h2, h3, h4 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+/* ── Site header: red top accent stripe ── */
+.site-header {
+  border-top: 3px solid var(--accent);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.site-header.is-scrolled {
+  box-shadow: 0 4px 24px rgba(183, 28, 28, 0.08);
+}
+
+/* ── Brand ── */
+.brand-line {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.12em;
+}
+.brand-rule { background: var(--accent); height: 2px; }
+.brand-tag  { color: var(--muted); }
+
+/* ── Nav ── */
+.nav a:hover, .nav a.active { color: var(--accent); }
+.cart-count { background: var(--accent); }
+
+/* ── Eyebrow labels ── */
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+/* ── Hero ── */
+.hero { padding: 72px 0 80px; background: #fff; }
+.hero-title {
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.0;
+  font-size: clamp(44px, 5.8vw, 72px);
+}
+.hero-sub { color: var(--ink-soft); font-size: 17px; }
+.hero-price-hint {
+  border-left: 2px solid var(--accent);
+  padding-left: 18px;
+}
+.hero-price-hint strong {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.hero-price-hint span { color: var(--muted); font-size: 11px; letter-spacing: 0.1em; }
+.hero-media { border-color: var(--line); background: var(--bg-soft); }
+
+/* ── Trust strip: full crimson bar ── */
+.trust-strip {
+  background: var(--accent);
+  border-color: transparent;
+}
+.trust-strip li     { color: rgba(255,255,255,0.92); }
+.trust-strip .trust-icon { color: rgba(255,255,255,0.55); }
+/* hover overrides */
+.trust-strip li:hover { color: #fff; }
+.trust-strip li:hover .trust-icon { color: #fff; }
+
+/* ── Buttons ── */
+.btn {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+}
+.btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #fff;
+}
+.btn:active { transform: scale(0.97); }
+
+/* ── Section titles ── */
+.section-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.section-sub { color: var(--ink-soft); }
+
+/* ── Shop / product cards ── */
+.shop { background: #fff; }
+.product-card { border-color: var(--line); }
+.product-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 20px 48px -20px rgba(183,28,28,0.18);
+}
+.product-card-title { font-weight: 800; letter-spacing: -0.03em; }
+.product-card-price {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+/* ── Pull quote ── */
+.pull-quote {
+  background: #fff;
+  border-color: var(--line);
+}
+.pull-quote p {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: clamp(22px, 3vw, 38px);
+}
+.pull-quote p::before { color: var(--accent); }
+/* ornament pulse in crimson */
+.pull-quote .ornament { color: var(--accent); }
+
+/* ── Process / Made by hand ── */
+.process { background: var(--bg-soft); }
+.process-grid li {
+  border-top: 2px solid var(--accent);
+  padding-top: 20px;
+}
+.step-num {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.process-grid h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.process-grid li:hover { background: rgba(183,28,28,0.03); }
+.process-grid li:hover .step-num { color: var(--accent-dark); }
+
+/* ── Story ── */
+.story { background: var(--bg-soft); border-color: var(--line); }
+.story strong { color: var(--ink); }
+.factory-note { border-left: 3px solid var(--accent); background: rgba(183,28,28,0.04); }
+.factory-card { border-color: var(--line); }
+.factory-card dt { color: var(--accent); }
+.factory-card a { color: var(--accent); }
+
+/* ── Why cards ── */
+.why { border-color: var(--line); }
+.why-card {
+  border-color: var(--line);
+  border-top: 2px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.why-card:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -16px rgba(183,28,28,0.14);
+}
+.why-card h3 { font-family: "Inter", sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+
+/* ── FAQ ── */
+.faq { background: var(--bg-soft); }
+.faq-item { border-color: var(--line); }
+.faq-item:first-of-type { border-top-color: var(--line); }
+.faq-item summary {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.faq-item summary::after  { color: var(--accent); font-weight: 900; }
+.faq-item[open] summary   { color: var(--accent); }
+
+/* ── Product detail page ── */
+.product-price {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+.price-included { color: var(--accent); }
+.product-title  { font-weight: 800; letter-spacing: -0.03em; }
+.trust-row { border-color: var(--line); }
+.trust-icon { color: var(--accent); }
+
+/* ── Payment section ── */
+.payment-section { background: var(--bg-soft); }
+.payment-section .section-title { font-weight: 800; }
+
+/* ── Footer / misc ── */
+.site-footer { border-color: var(--line); }
+
+/* ── modern.css overrides ── */
+/* Stagger children with crimson pulse on trust-strip won't show since bg is red,
+   keep stagger but strip is already styled above */
+
+/* ── Header shadow crimson tint ── */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(24px); }
+}
