@@ -53,7 +53,7 @@ function getBearer() {
         $h = $_SERVER['HTTP_AUTHORIZATION'];
     } elseif (function_exists('apache_request_headers')) {
         $hdrs = apache_request_headers();
-        $h = $hdrs['Authorization'] ?? '';
+        $h = isset($hdrs['Authorization']) ? $hdrs['Authorization'] : '';
     }
     if (preg_match('/^Bearer\s+(.+)$/i', $h, $m)) {
         return trim($m[1]);
@@ -92,7 +92,7 @@ function writeOrders(array $orders) {
 
 // ─── Router ───────────────────────────────────────────────────────────────────
 
-$action = $_GET['action'] ?? '';
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($action) {
@@ -107,9 +107,10 @@ switch ($action) {
         if ($method !== 'POST') {
             respond(405, ['error' => 'Method not allowed']);
         }
-        $body    = json_decode(file_get_contents('php://input'), true) ?? [];
-        $id      = $body['id'] ?? '';
-        $shipped = (bool)($body['shipped'] ?? false);
+        $tmp     = json_decode(file_get_contents('php://input'), true);
+        $body    = is_array($tmp) ? $tmp : [];
+        $id      = isset($body['id']) ? $body['id'] : '';
+        $shipped = (bool)(isset($body['shipped']) ? $body['shipped'] : false);
 
         if (empty($id)) {
             respond(400, ['error' => 'Missing id']);
@@ -139,8 +140,9 @@ switch ($action) {
         if ($method !== 'POST') {
             respond(405, ['error' => 'Method not allowed']);
         }
-        $body = json_decode(file_get_contents('php://input'), true) ?? [];
-        $id   = $body['id'] ?? '';
+        $tmp  = json_decode(file_get_contents('php://input'), true);
+        $body = is_array($tmp) ? $tmp : [];
+        $id   = isset($body['id']) ? $body['id'] : '';
 
         if (empty($id)) {
             respond(400, ['error' => 'Missing id']);

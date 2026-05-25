@@ -59,19 +59,23 @@ if (!empty($_POST['bot-field'])) {
 // ─── Sanitise & collect fields ───────────────────────────────────────────────
 
 function clean($v) {
-    return htmlspecialchars(trim((string)($v ?? '')), ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars(trim((string)($v !== null ? $v : '')), ENT_QUOTES, 'UTF-8');
 }
 
-$name     = clean($_POST['name']              ?? '');
-$phone    = clean($_POST['phone']             ?? '');
-$email    = clean($_POST['email']             ?? '');
-$address  = clean($_POST['address']           ?? '');
-$city     = clean($_POST['city']              ?? '');
-$postal   = clean($_POST['postal_code']       ?? '');
-$items    = clean($_POST['order_items']       ?? '');
-$subtotal = clean($_POST['order_subtotal']    ?? '');
-$total    = clean($_POST['order_total']       ?? '');
-$ref      = clean($_POST['payment_reference'] ?? '');
+function post($key) {
+    return isset($_POST[$key]) ? $_POST[$key] : '';
+}
+
+$name     = clean(post('name'));
+$phone    = clean(post('phone'));
+$email    = clean(post('email'));
+$address  = clean(post('address'));
+$city     = clean(post('city'));
+$postal   = clean(post('postal_code'));
+$items    = clean(post('order_items'));
+$subtotal = clean(post('order_subtotal'));
+$total    = clean(post('order_total'));
+$ref      = clean(post('payment_reference'));
 
 // Required fields check
 if (empty($name) || empty($phone) || empty($address) || empty($city)) {
