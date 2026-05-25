@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chef-knife.pk — 5 Directions Visuelles</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #111; color: #fff; }
+
+  .page-title {
+    text-align: center;
+    padding: 48px 24px 32px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .concepts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 3px;
+    padding: 0 3px 3px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONCEPT 1 — FORGE NOIRE (Dark luxury)
+  ═══════════════════════════════════════════════ */
+  .c1 {
+    background: #0D0D0D;
+    font-family: 'Georgia', serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .c1-inner { padding: 48px 40px 40px; min-height: 560px; display: flex; flex-direction: column; }
+  .c1 .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid #C9A84C44;
+    color: #C9A84C; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 2px; margin-bottom: 32px; width: fit-content;
+  }
+  .c1 h2 {
+    font-size: 42px; font-weight: 400; line-height: 1.1;
+    color: #F5F0E8; margin-bottom: 8px; letter-spacing: -1px;
+  }
+  .c1 h2 em { color: #C9A84C; font-style: normal; }
+  .c1 .sub { color: #888; font-size: 14px; line-height: 1.7; margin-bottom: 32px; font-family: 'Segoe UI', sans-serif; }
+  .c1 .btn-row { display: flex; gap: 12px; margin-bottom: auto; }
+  .c1 .btn-primary {
+    background: #C9A84C; color: #0D0D0D; font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; padding: 14px 28px; border: none; cursor: pointer;
+  }
+  .c1 .btn-ghost {
+    background: transparent; color: #C9A84C; font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; padding: 14px 28px;
+    border: 1px solid #C9A84C55; cursor: pointer;
+  }
+  .c1 .divider { width: 48px; height: 1px; background: #C9A84C44; margin: 32px 0 24px; }
+  .c1 .palette { display: flex; gap: 8px; margin-top: 16px; }
+  .c1 .swatch { width: 32px; height: 32px; border-radius: 50%; }
+  .c1 .label { font-size: 10px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 28px; }
+  .c1 .deco-line {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, transparent, #C9A84C, transparent);
+  }
+  .c1 .deco-bg {
+    position: absolute; right: -80px; bottom: -80px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, #C9A84C08 0%, transparent 70%);
+  }
+  .c1 .concept-num {
+    position: absolute; top: 24px; right: 24px;
+    font-size: 80px; font-weight: 900; color: #1A1A1A;
+    font-family: 'Segoe UI', sans-serif; line-height: 1;
+    user-select: none;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONCEPT 2 — ARTISAN CHAUD (Terracotta / craft)
+  ═══════════════════════════════════════════════ */
+  .c2 {
+    background: #FBF3EB;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .c2-inner { padding: 48px 40px 40px; min-height: 560px; display: flex; flex-direction: column; }
+  .c2 .tag {
+    background: #C1440E22; color: #C1440E; font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    margin-bottom: 28px; width: fit-content;
+  }
+  .c2 h2 {
+    font-size: 40px; font-weight: 800; line-height: 1.1;
+    color: #2C1810; margin-bottom: 12px; letter-spacing: -1.5px;
+  }
+  .c2 h2 span { color: #C1440E; }
+  .c2 .sub { color: #7A5C4E; font-size: 14px; line-height: 1.7; margin-bottom: 32px; }
+  .c2 .btn-primary {
+    background: #C1440E; color: #FBF3EB; font-size: 13px; font-weight: 700;
+    padding: 16px 32px; border: none; cursor: pointer; border-radius: 4px;
+    letter-spacing: 0.5px; width: fit-content;
+  }
+  .c2 .features { display: flex; gap: 24px; margin-top: 32px; margin-bottom: auto; }
+  .c2 .feat { display: flex; flex-direction: column; gap: 4px; }
+  .c2 .feat-icon { font-size: 20px; }
+  .c2 .feat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #7A5C4E; }
+  .c2 .feat-val { font-size: 18px; font-weight: 800; color: #2C1810; }
+  .c2 .divider { width: 100%; height: 1px; background: #C1440E22; margin: 28px 0; }
+  .c2 .palette { display: flex; gap: 8px; }
+  .c2 .swatch { width: 32px; height: 32px; border-radius: 50%; }
+  .c2 .label { font-size: 10px; color: #7A5C4E; letter-spacing: 2px; text-transform: uppercase; margin-top: 16px; }
+  .c2 .concept-num {
+    position: absolute; top: -20px; right: -10px;
+    font-size: 120px; font-weight: 900; color: #C1440E0D;
+    line-height: 1; user-select: none;
+  }
+  .c2 .deco-circle {
+    position: absolute; right: -60px; top: 40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 40px solid #C1440E0A;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONCEPT 3 — ACIER BLEU (Steel blue / moderne)
+  ═══════════════════════════════════════════════ */
+  .c3 {
+    background: #F7F9FC;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .c3-inner { padding: 48px 40px 40px; min-height: 560px; display: flex; flex-direction: column; }
+  .c3 .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: #1B4F72; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .c3 .eyebrow::before { content: ''; width: 24px; height: 2px; background: #1B4F72; display: block; }
+  .c3 h2 {
+    font-size: 44px; font-weight: 800; line-height: 1.05;
+    color: #0D1B2A; margin-bottom: 14px; letter-spacing: -2px;
+  }
+  .c3 h2 span {
+    background: linear-gradient(135deg, #1B4F72, #2980B9);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .c3 .sub { color: #5D7A8A; font-size: 14px; line-height: 1.8; margin-bottom: 36px; }
+  .c3 .btn-row { display: flex; gap: 12px; }
+  .c3 .btn-primary {
+    background: linear-gradient(135deg, #1B4F72, #2980B9);
+    color: #fff; font-size: 13px; font-weight: 600;
+    padding: 14px 28px; border: none; cursor: pointer; border-radius: 8px;
+    box-shadow: 0 8px 24px #1B4F7233;
+  }
+  .c3 .btn-ghost {
+    background: transparent; color: #1B4F72; font-size: 13px; font-weight: 600;
+    padding: 14px 20px; border: none; cursor: pointer;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .c3 .trust-bar {
+    display: flex; gap: 20px; margin-top: auto; padding-top: 32px;
+    border-top: 1px solid #E0EAF0;
+  }
+  .c3 .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5D7A8A; }
+  .c3 .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: #2980B9; }
+  .c3 .divider { height: 1px; background: #E0EAF0; margin: 24px 0; }
+  .c3 .palette { display: flex; gap: 8px; }
+  .c3 .swatch { width: 32px; height: 32px; border-radius: 8px; }
+  .c3 .label { font-size: 10px; color: #5D7A8A; letter-spacing: 2px; text-transform: uppercase; margin-top: 16px; }
+  .c3 .deco-grid {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 160px;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 39px, #1B4F7208 39px, #1B4F7208 40px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 39px, #1B4F7208 39px, #1B4F7208 40px
+    );
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONCEPT 4 — ÉMERAUDE HÉRITAGE (Pakistan green / gold)
+  ═══════════════════════════════════════════════ */
+  .c4 {
+    background: #0B3D2E;
+    font-family: 'Georgia', serif;
+    position: relative; overflow: hidden;
+  }
+  .c4-inner { padding: 48px 40px 40px; min-height: 560px; display: flex; flex-direction: column; }
+  .c4 .ornament { color: #D4AF37; font-size: 24px; margin-bottom: 20px; letter-spacing: 8px; }
+  .c4 h2 {
+    font-size: 40px; font-weight: 400; line-height: 1.15;
+    color: #F5EFE0; margin-bottom: 12px; letter-spacing: -0.5px;
+  }
+  .c4 h2 em { color: #D4AF37; font-style: italic; }
+  .c4 .sub { color: #8FB8A0; font-size: 14px; line-height: 1.8; margin-bottom: 32px; font-family: 'Segoe UI', sans-serif; }
+  .c4 .divider-ornament {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  }
+  .c4 .divider-ornament::before,
+  .c4 .divider-ornament::after { content: ''; flex: 1; height: 1px; background: #D4AF3744; }
+  .c4 .divider-ornament span { color: #D4AF37; font-size: 14px; }
+  .c4 .btn-primary {
+    background: transparent; color: #D4AF37; font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase; padding: 16px 32px;
+    border: 1px solid #D4AF37; cursor: pointer; width: fit-content;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .c4 .quote {
+    font-style: italic; color: #8FB8A0; font-size: 13px; line-height: 1.7;
+    border-left: 2px solid #D4AF3766; padding-left: 16px;
+    margin-top: auto; margin-bottom: 8px;
+  }
+  .c4 .divider { width: 40px; height: 1px; background: #D4AF3744; margin: 24px 0; }
+  .c4 .palette { display: flex; gap: 8px; }
+  .c4 .swatch { width: 32px; height: 32px; border-radius: 50%; }
+  .c4 .label { font-size: 10px; color: #8FB8A0; letter-spacing: 2px; text-transform: uppercase; margin-top: 16px; }
+  .c4 .deco-hex {
+    position: absolute; right: -40px; top: -40px; opacity: 0.06;
+    font-size: 280px; color: #D4AF37; font-family: 'Segoe UI', sans-serif;
+    font-weight: 900; user-select: none; line-height: 1;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CONCEPT 5 — TRANCHANT ROUGE (Bold crimson / minimal)
+  ═══════════════════════════════════════════════ */
+  .c5 {
+    background: #FFFFFF;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative; overflow: hidden;
+  }
+  .c5-inner { padding: 48px 40px 40px; min-height: 560px; display: flex; flex-direction: column; }
+  .c5 .stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #B71C1C, #E53935, #FF5252);
+  }
+  .c5 .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: #B71C1C; margin-bottom: 20px;
+  }
+  .c5 h2 {
+    font-size: 48px; font-weight: 900; line-height: 0.95;
+    color: #1A1A1A; margin-bottom: 16px; letter-spacing: -3px;
+  }
+  .c5 h2 .highlight {
+    color: #B71C1C;
+    text-decoration: underline;
+    text-decoration-color: #B71C1C44;
+    text-underline-offset: 4px;
+  }
+  .c5 .sub { color: #666; font-size: 14px; line-height: 1.8; margin-bottom: 36px; max-width: 340px; }
+  .c5 .btn-primary {
+    background: #B71C1C; color: #fff; font-size: 14px; font-weight: 700;
+    padding: 16px 36px; border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+    letter-spacing: 0.5px; width: fit-content;
+  }
+  .c5 .stats { display: flex; gap: 0; margin-top: 32px; margin-bottom: auto; }
+  .c5 .stat {
+    flex: 1; padding: 20px 0; border-top: 2px solid #1A1A1A;
+  }
+  .c5 .stat:not(:last-child) { margin-right: 24px; }
+  .c5 .stat-num { font-size: 32px; font-weight: 900; color: #1A1A1A; letter-spacing: -2px; }
+  .c5 .stat-num span { color: #B71C1C; }
+  .c5 .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-top: 2px; }
+  .c5 .divider { height: 1px; background: #F0F0F0; margin: 24px 0; }
+  .c5 .palette { display: flex; gap: 8px; }
+  .c5 .swatch { width: 32px; height: 32px; }
+  .c5 .label { font-size: 10px; color: #999; letter-spacing: 2px; text-transform: uppercase; margin-top: 16px; }
+  .c5 .deco-slash {
+    position: absolute; right: -20px; top: 0; bottom: 0; width: 80px;
+    background: linear-gradient(135deg, transparent 0%, #B71C1C05 50%, transparent 100%);
+    transform: skewX(-15deg);
+  }
+
+  /* ─── Labels ─── */
+  .concept-tag {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .c1 .concept-tag { background: #0D0D0D; color: #C9A84C; border-top: 1px solid #C9A84C22; }
+  .c2 .concept-tag { background: #FBF3EB; color: #C1440E; border-top: 1px solid #C1440E22; }
+  .c3 .concept-tag { background: #F7F9FC; color: #1B4F72; border-top: 1px solid #1B4F7222; }
+  .c4 .concept-tag { background: #0B3D2E; color: #D4AF37; border-top: 1px solid #D4AF3722; }
+  .c5 .concept-tag { background: #fff; color: #B71C1C; border-top: 1px solid #B71C1C22; }
+  .concept-tag .num { font-size: 22px; opacity: 0.3; font-weight: 900; }
+</style>
+</head>
+<body>
+
+<div class="page-title">chef-knife.pk — 5 Directions Visuelles</div>
+
+<div class="concepts">
+
+  <!-- ══ CONCEPT 1 — FORGE NOIRE ══ -->
+  <div class="c1">
+    <div class="c1-inner">
+      <div class="badge">✦ &nbsp;Handcrafted in Pakistan</div>
+      <div class="concept-num">1</div>
+      <h2>Chef Knives<br>Forged in <em>Fire</em></h2>
+      <p class="sub">Hand-hammered blades crafted by master artisans.<br>Every knife tells a story of steel and tradition.</p>
+      <div class="btn-row">
+        <button class="btn-primary">Shop Collection</button>
+        <button class="btn-ghost">Our Process →</button>
+      </div>
+      <div class="divider"></div>
+      <div class="label">Palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#0D0D0D; border:1px solid #333;"></div>
+        <div class="swatch" style="background:#1A1A1A;"></div>
+        <div class="swatch" style="background:#C9A84C;"></div>
+        <div class="swatch" style="background:#F5F0E8;"></div>
+        <div class="swatch" style="background:#333;"></div>
+      </div>
+      <div class="label" style="margin-top:12px;">Fonts: Georgia + Segoe UI · Dark Luxury</div>
+    </div>
+    <div class="deco-line"></div>
+    <div class="deco-bg"></div>
+    <div class="concept-tag">
+      <span>Forge Noire — Dark Luxury</span>
+      <span class="num">01</span>
+    </div>
+  </div>
+
+  <!-- ══ CONCEPT 2 — ARTISAN CHAUD ══ -->
+  <div class="c2">
+    <div class="c2-inner">
+      <div class="tag">✦ Artisan · Pakistan</div>
+      <div class="concept-num">2</div>
+      <h2>Knives Built<br>to <span>Last</span> a Lifetime</h2>
+      <p class="sub">From mountain forges to your kitchen — blades shaped with heat, hammer, and generations of skill.</p>
+      <button class="btn-primary">Explore Knives</button>
+      <div class="features">
+        <div class="feat">
+          <span class="feat-icon">🔥</span>
+          <span class="feat-label">Steel</span>
+          <span class="feat-val">High Carbon</span>
+        </div>
+        <div class="feat">
+          <span class="feat-icon">✋</span>
+          <span class="feat-label">Made</span>
+          <span class="feat-val">By Hand</span>
+        </div>
+        <div class="feat">
+          <span class="feat-icon">📦</span>
+          <span class="feat-label">Ship</span>
+          <span class="feat-val">Worldwide</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="label">Palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#FBF3EB; border:1px solid #ddd;"></div>
+        <div class="swatch" style="background:#C1440E;"></div>
+        <div class="swatch" style="background:#5C4033;"></div>
+        <div class="swatch" style="background:#2C1810;"></div>
+        <div class="swatch" style="background:#E8D5C0;"></div>
+      </div>
+      <div class="label" style="margin-top:12px;">Fonts: Segoe UI Bold · Artisan Warm</div>
+    </div>
+    <div class="deco-circle"></div>
+    <div class="concept-tag">
+      <span>Artisan Chaud — Terracotta Craft</span>
+      <span class="num">02</span>
+    </div>
+  </div>
+
+  <!-- ══ CONCEPT 3 — ACIER BLEU ══ -->
+  <div class="c3">
+    <div class="c3-inner">
+      <div class="eyebrow">Pakistan · Est. 2024</div>
+      <h2>Precision<br><span>Steel</span><br>Knives</h2>
+      <p class="sub">Professional-grade chef knives. Hand-forged, machine-finished, delivered worldwide from the knife capital of Pakistan.</p>
+      <div class="btn-row">
+        <button class="btn-primary">Shop Now</button>
+        <button class="btn-ghost">Learn more</button>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item"><span class="trust-dot"></span>100% Handmade</div>
+        <div class="trust-item"><span class="trust-dot"></span>Free Shipping</div>
+        <div class="trust-item"><span class="trust-dot"></span>Secure Payment</div>
+      </div>
+      <div class="divider"></div>
+      <div class="label">Palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#F7F9FC; border:1px solid #ddd;"></div>
+        <div class="swatch" style="background:#1B4F72;"></div>
+        <div class="swatch" style="background:#2980B9;"></div>
+        <div class="swatch" style="background:#0D1B2A;"></div>
+        <div class="swatch" style="background:#E0EAF0;"></div>
+      </div>
+      <div class="label" style="margin-top:12px;">Fonts: Segoe UI · Steel Blue Moderne</div>
+    </div>
+    <div class="deco-grid"></div>
+    <div class="concept-tag">
+      <span>Acier Bleu — Steel Modern</span>
+      <span class="num">03</span>
+    </div>
+  </div>
+
+  <!-- ══ CONCEPT 4 — ÉMERAUDE HÉRITAGE ══ -->
+  <div class="c4">
+    <div class="c4-inner">
+      <div class="ornament">✦ ✦ ✦</div>
+      <div class="deco-hex">✦</div>
+      <h2>The Art of the<br><em>Blade</em></h2>
+      <p class="sub">Where centuries of Pakistani craftsmanship meet the demands of the modern chef. Each knife is a work of art.</p>
+      <div class="divider-ornament"><span>✦</span></div>
+      <button class="btn-primary">Discover the Collection</button>
+      <p class="quote">"A knife is only as good as the hands that shaped it."</p>
+      <div class="divider"></div>
+      <div class="label">Palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#0B3D2E;"></div>
+        <div class="swatch" style="background:#155C42;"></div>
+        <div class="swatch" style="background:#D4AF37;"></div>
+        <div class="swatch" style="background:#F5EFE0;"></div>
+        <div class="swatch" style="background:#8FB8A0;"></div>
+      </div>
+      <div class="label" style="margin-top:12px;">Fonts: Georgia Serif · Émeraude Héritage</div>
+    </div>
+    <div class="concept-tag">
+      <span>Émeraude Héritage — Pakistan Green</span>
+      <span class="num">04</span>
+    </div>
+  </div>
+
+  <!-- ══ CONCEPT 5 — TRANCHANT ROUGE ══ -->
+  <div class="c5">
+    <div class="c5-inner">
+      <div class="stripe"></div>
+      <div class="eyebrow">Chef-Knife.pk</div>
+      <h2>Sharp.<br>Bold.<br><span class="highlight">Unstoppable.</span></h2>
+      <p class="sub">Hand-forged knives built for professionals. From Pakistan's steel city, to your kitchen.</p>
+      <button class="btn-primary">Order Now</button>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">Orders Shipped</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Handmade</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">30<span>+</span></div>
+          <div class="stat-label">Countries</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="label">Palette</div>
+      <div class="palette">
+        <div class="swatch" style="background:#FFFFFF; border:1px solid #ddd;"></div>
+        <div class="swatch" style="background:#B71C1C;"></div>
+        <div class="swatch" style="background:#E53935;"></div>
+        <div class="swatch" style="background:#1A1A1A;"></div>
+        <div class="swatch" style="background:#F5F5F5;"></div>
+      </div>
+      <div class="label" style="margin-top:12px;">Fonts: Segoe UI Black · Tranchant Rouge</div>
+    </div>
+    <div class="deco-slash"></div>
+    <div class="concept-tag">
+      <span>Tranchant Rouge — Bold Crimson</span>
+      <span class="num">05</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

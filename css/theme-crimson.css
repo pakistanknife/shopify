@@ -43,7 +43,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.12em;
 }
 .brand-rule { background: var(--accent); height: 2px; }
-.brand-tag  { color: var(--muted); }
+.brand-tag  { color: var(--muted); letter-spacing: 0.32em; }
 
 /* ── Nav ── */
 .nav a:hover, .nav a.active { color: var(--accent); }
