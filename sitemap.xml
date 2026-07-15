@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://chef-knife.pk/index.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://chef-knife.pk/</loc>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -15,9 +15,17 @@
       <image:title>Sapphire Chef Knife Set — hand-forged in Sialkot Pakistan</image:title>
     </image:image>
   </url>
+
+  <!-- Knife Chef landing page — top Search Console keyword -->
+  <url>
+    <loc>https://chef-knife.pk/knife-chef-pakistan.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-set-sapphire.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -27,7 +35,7 @@
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-set-teak.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -37,146 +45,146 @@
   </url>
   <url>
     <loc>https://chef-knife.pk/ur/index.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/ur/chef-knife-set-sapphire.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/ur/chef-knife-set-teak.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/wedding-gift-chef-knife.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/eid-gift-chef-knife.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-karachi.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-lahore.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-islamabad.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-rawalpindi.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-faisalabad.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-gujranwala.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-sialkot.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-gujrat.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-multan.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-sargodha.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-peshawar.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-wazirabad.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-dha-lahore.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/housewarming-gift-chef-knife.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-bahria-town.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://chef-knife.pk/resin-handle-chef-knife.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-dha-karachi.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-gulberg-lahore.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://chef-knife.pk/chef-knife-price-pakistan.html</loc>
-    <lastmod>2026-05-17</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
