@@ -228,6 +228,10 @@ h1, h2, h3, h4 {
 
 /* ── Footer / misc ── */
 .site-footer { border-color: var(--line); }
+.footer-brand { font-family: "Inter", sans-serif; font-weight: 700; }
+
+/* ── Override remaining Cormorant Garamond usages (A6) ── */
+.hero-price-hint strong { font-family: "Inter", sans-serif; font-weight: 800; }
 
 /* ── modern.css overrides ── */
 /* Stagger children with crimson pulse on trust-strip won't show since bg is red,

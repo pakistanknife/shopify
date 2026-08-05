@@ -1276,7 +1276,8 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.seo-links h2 {
+.seo-links h2,
+.seo-links h3 {
   font-family: "Inter", sans-serif;
   font-size: 11px;
   letter-spacing: 0.16em;
