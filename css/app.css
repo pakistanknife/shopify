@@ -820,6 +820,13 @@ img { max-width: 100%; display: block; }
   text-underline-offset: 3px;
   margin-bottom: 8px;
 }
+.footer-instagram { display: block; color: var(--ink-soft); text-decoration: none; margin-bottom: 4px; }
+.footer-instagram:hover { color: var(--ink); }
+.footer-nav { display: flex; flex-direction: column; gap: 8px; }
+.footer-nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; }
+.footer-nav a:hover { color: var(--ink); }
+.footer-phone { display: block; margin-top: 6px; text-decoration: none; }
+.footer-pay { font-size: 12px; margin-top: 6px; letter-spacing: 0.03em; }
 .whatsapp-link {
   color: var(--ink);
   text-decoration: underline;

@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history needed for git log dates
+
+      - name: Update sitemap lastmod dates
+        run: python3 update-sitemap.py
 
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

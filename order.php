@@ -197,16 +197,16 @@ function sendFallbackEmail($recipients, $subject, $htmlContent) {
 // Build HTML email
 $rows = '';
 $fields = [
-    ['Nom',                 $name],
-    ['Téléphone',           $phone],
-    ['Email',               $email ?: '—'],
-    ['Adresse',             $address],
-    ['Ville',               $city . ($postal ? ' ' . $postal : '')],
-    ['Référence paiement',  $ref ?: '—'],
-    ['Articles',            $items],
-    ['Sous-total',          $subtotal],
-    ['Total',               $total],
-    ['ID commande',         $id],
+    ['Name',             $name],
+    ['Phone',            $phone],
+    ['Email',            $email ?: '—'],
+    ['Address',          $address],
+    ['City',             $city . ($postal ? ' ' . $postal : '')],
+    ['Payment ref',      $ref ?: '—'],
+    ['Items',            $items],
+    ['Subtotal',         $subtotal],
+    ['Total',            $total],
+    ['Order ID',         $id],
 ];
 foreach ($fields as $row) {
     if (empty($row[1]) || $row[1] === '—') {
@@ -222,17 +222,17 @@ foreach ($fields as $row) {
 
 $htmlEmail = '
 <div style="font-family:sans-serif;max-width:560px;margin:0 auto">
-  <h2 style="color:#1a1814;margin-bottom:4px">Nouvelle commande</h2>
-  <p style="color:#888;margin-top:0">Chef Knife — Sialkot, Pakistan</p>
+  <h2 style="color:#1a1814;margin-bottom:4px">New order</h2>
+  <p style="color:#888;margin-top:0">Chef Knife &mdash; Sialkot, Pakistan</p>
   <table style="border-collapse:collapse;width:100%;margin-top:16px">
     ' . $rows . '
   </table>
   <p style="margin-top:24px;font-size:12px;color:#aaa">
-    <a href="' . SITE_URL . '/admin.html">Voir dans l\'admin →</a>
+    <a href="' . SITE_URL . '/admin.html">View in admin →</a>
   </p>
 </div>';
 
-$subject = 'Commande de ' . $name . ' — ' . ($total ?: SITE_NAME);
+$subject = 'New order from ' . $name . ' — ' . ($total ?: SITE_NAME);
 
 // Try Brevo first; fall back to OVH native mail()
 if (!sendBrevoEmail($RECIPIENTS, $subject, $htmlEmail, BREVO_API_KEY)) {
