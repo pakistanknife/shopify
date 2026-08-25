@@ -10,3 +10,4 @@ secrets.php
 
 # Order data — lives on the server, must survive Git deploys
 data/orders.json
+data/mail_errors.log

@@ -132,15 +132,21 @@ if ($fp) {
     fclose($fp);
 }
 
-// ─── Send email notification via Brevo ───────────────────────────────────────
+// ─── Email helpers ────────────────────────────────────────────────────────────
+
+function logMailError($msg) {
+    $logFile = __DIR__ . '/data/mail_errors.log';
+    @file_put_contents($logFile, date('c') . ' ' . $msg . "\n", FILE_APPEND | LOCK_EX);
+}
 
 function sendBrevoEmail($recipients, $subject, $htmlContent, $apiKey) {
-    if (!function_exists('curl_init') || $apiKey === 'YOUR_BREVO_API_KEY_HERE' || empty($apiKey)) {
-        return false; // Skip if cURL unavailable or key not configured
+    $invalid = ['', 'YOUR_BREVO_API_KEY_HERE', 'xkeysib-REPLACE_WITH_YOUR_KEY'];
+    if (!function_exists('curl_init') || in_array($apiKey, $invalid, true)) {
+        return false;
     }
 
     $payload = json_encode([
-        'sender'      => ['email' => 'kazam.q@gmail.com', 'name' => 'Chef Knife Orders'],
+        'sender'      => ['email' => 'orders@chef-knife.pk', 'name' => 'Chef Knife Orders'],
         'to'          => $recipients,
         'subject'     => $subject,
         'htmlContent' => $htmlContent,
@@ -161,10 +167,34 @@ function sendBrevoEmail($recipients, $subject, $htmlContent, $apiKey) {
     $result = curl_exec($ch);
     $code   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    return ($code >= 200 && $code < 300);
+    if ($code < 200 || $code >= 300) {
+        logMailError("Brevo HTTP $code: $result");
+        return false;
+    }
+    return true;
 }
 
-// Build HTML email (same style as the Netlify version)
+function sendFallbackEmail($recipients, $subject, $htmlContent) {
+    $from    = 'orders@chef-knife.pk';
+    $headers = implode("\r\n", [
+        'From: Chef Knife Orders <' . $from . '>',
+        'Reply-To: ' . $from,
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8',
+        'X-Mailer: PHP/' . PHP_VERSION,
+    ]);
+    $ok = true;
+    foreach ($recipients as $r) {
+        $sent = mail($r['email'], $subject, $htmlContent, $headers);
+        if (!$sent) {
+            logMailError("mail() failed for " . $r['email']);
+            $ok = false;
+        }
+    }
+    return $ok;
+}
+
+// Build HTML email
 $rows = '';
 $fields = [
     ['Nom',                 $name],
@@ -204,7 +234,10 @@ $htmlEmail = '
 
 $subject = 'Commande de ' . $name . ' — ' . ($total ?: SITE_NAME);
 
-sendBrevoEmail($RECIPIENTS, $subject, $htmlEmail, BREVO_API_KEY);
+// Try Brevo first; fall back to OVH native mail()
+if (!sendBrevoEmail($RECIPIENTS, $subject, $htmlEmail, BREVO_API_KEY)) {
+    sendFallbackEmail($RECIPIENTS, $subject, $htmlEmail);
+}
 
 // ─── Redirect to confirmation page ───────────────────────────────────────────
 
