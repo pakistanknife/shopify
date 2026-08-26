@@ -13,7 +13,7 @@ const CONFIG = {
   // Company / legal info — we are the physical manufacturer, not a reseller.
   // Note: precise street address intentionally omitted from the public site.
   company: {
-    legalName: "Pakistan Knife Factory (PKF)",
+    legalName: "PKF - Pakistan Knives Factory",
     addressLine1: "Small Industrial Area",
     city: "Sialkot",
     postalCode: "51310",
@@ -103,7 +103,7 @@ const PRODUCTS = [
       "images/sapphire-3.jpg"
     ],
     description:
-      "A two-piece heirloom chef knife set built around hand-poured sapphire-blue acrylic resin handles — each one slightly unique, no two sets alike. The 8-inch chef knife is full-tang, hand-ground from high-carbon stainless steel, balanced for daily kitchen work. The matching 3.5-inch paring knife handles every precision task. Both blades are mirror-polished and hand-finished at our Pakistan Knife Factory workshop in Sialkot. Presented in a satin-lined gift box, ready to keep — or to give.",
+      "A two-piece heirloom chef knife set built around hand-poured sapphire-blue acrylic resin handles — each one slightly unique, no two sets alike. The 8-inch chef knife is full-tang, hand-ground from high-carbon stainless steel, balanced for daily kitchen work. The matching 3.5-inch paring knife handles every precision task. Both blades are mirror-polished and hand-finished at our PKF - Pakistan Knives Factory workshop in Sialkot. Presented in a satin-lined gift box, ready to keep — or to give.",
     includes: [
       "8-inch full-tang chef knife — high-carbon stainless steel",
       "3.5-inch paring knife — hand-ground edge",
@@ -126,7 +126,7 @@ const PRODUCTS = [
       "images/teak-4.jpg"
     ],
     description:
-      "Our heritage chef knife set. A wide-bellied 8-inch chef knife paired with a matching paring knife, both fitted with natural teak wood handles — close-grained, warm-toned, no two pieces alike. Teak's natural oils make it stable, hard-wearing and a pleasure to hold. Full-tang construction, single-piece high-carbon stainless steel blades, hand-ground and mirror-polished at our Pakistan Knife Factory workshop in Sialkot. Designed to last a generation, presented in a hand-finished satin-lined gift box.",
+      "Our heritage chef knife set. A wide-bellied 8-inch chef knife paired with a matching paring knife, both fitted with natural teak wood handles — close-grained, warm-toned, no two pieces alike. Teak's natural oils make it stable, hard-wearing and a pleasure to hold. Full-tang construction, single-piece high-carbon stainless steel blades, hand-ground and mirror-polished at our PKF - Pakistan Knives Factory workshop in Sialkot. Designed to last a generation, presented in a hand-finished satin-lined gift box.",
     includes: [
       "8-inch full-tang chef knife — high-carbon stainless steel",
       "3.5-inch paring knife — hand-ground edge",

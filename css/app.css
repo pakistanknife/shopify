@@ -827,6 +827,8 @@ img { max-width: 100%; display: block; }
 .footer-nav a:hover { color: var(--ink); }
 .footer-phone { display: block; margin-top: 6px; text-decoration: none; }
 .footer-pay { font-size: 12px; margin-top: 6px; letter-spacing: 0.03em; }
+.footer-google { display: block; color: var(--ink-soft); text-decoration: none; margin-bottom: 4px; }
+.footer-google:hover { color: var(--ink); }
 .whatsapp-link {
   color: var(--ink);
   text-decoration: underline;
