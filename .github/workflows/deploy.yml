@@ -32,9 +32,6 @@ jobs:
             secrets.php
             data/orders.json
 
-      - name: Ping Google sitemap
-        run: curl -s "https://www.google.com/ping?sitemap=https://chef-knife.pk/sitemap.xml" -o /dev/null -w "%{http_code}"
-
       - name: IndexNow — notify Bing/Yandex/others
         run: |
           python3 - <<'EOF'
